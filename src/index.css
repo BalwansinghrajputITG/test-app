@@ -98,3 +98,43 @@ body{
 .bg{
     box-shadow: inset 0px 0px 12px 5px black;
 }
+.test-box{
+    padding: 25px 40px;
+    border: 1px solid rgb(237, 192, 255);
+    box-shadow: 0px 0px 13px 4px rgb(71, 32, 143);
+    border-radius: 30px;
+     animation: fadeIn 1300ms; 
+}
+.test-wrapper{
+    padding: 170px;
+}
+
+
+.test-content{
+    background-color: rgb(35, 21, 73);
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-top: 15px; 
+}
+.options-div{
+    background: rgb(46, 28, 100);
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.buttons {
+    margin: 20px 0px ;
+    padding: 0px 20px;
+    align-items: center;
+}
+.sub-btn{
+    padding: 10px 15px ;
+    background: rgb(143, 255, 143);
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.next-btn{
+    padding-left: 15px;
+}
