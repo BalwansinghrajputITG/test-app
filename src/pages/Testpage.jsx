@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import PopUp from '../components/PopUp'
-import UseMyFunctions from '../components/Context'
+import PopUp from '../Components/PopUp'
+import {UseMyFunctions} from '../Components/Context'
 
 const Testpage = () => {
 
     const [showPopup, setShowPopup] = useState(false);
     const { onStart } = UseMyFunctions();
-
-
+    
+    
     const handleStart = () => {
         setShowPopup((e) => { return !e });
     }
