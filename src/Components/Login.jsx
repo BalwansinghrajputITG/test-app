@@ -1,136 +1,126 @@
-// import { login } from "../servics/api";
-// import { useState, useEffect } from "react";
-
-// function Login() {
-//   const [Email, setEmail] = useState("");
-//   const [Password, setPassword] = useState("");
-
-//   useEffect(() => {
-//     login();
-//   }, []);
-
-//   async function OnSubmitForm(e) {
-//     e.preventDefault();
-//     if (ValidEmail(Email) && ValidPassword(Password)) {
-//     } else {
-//       console.log("Invalid email or password");
-//     }
-//   }
-
-//   function ValidEmail(email) {
-//     let value = email.trim();
-
-//     if (value === "") return false;
-//     if (!value.includes("@") || !value.includes(".")) return false;
-//     if (value[0] === "@" || value[0] === ".") return false;
-//     if (value[value.length - 1] === "@" || value[value.length - 1] === ".")
-//       return false;
-
-//     const atIndex = value.indexOf("@");
-//     const dotIndex = value.lastIndexOf(".");
-//     if (atIndex > dotIndex) return false;
-//     if (dotIndex - atIndex <= 1) return false;
-//     if (value[0] >= "0" && value[0] <= "9") return false;
-
-//     const validEndings = [".com", ".in", ".org", ".net"];
-//     let hasValidEnding = false;
-
-//     for (let end of validEndings) {
-//       if (value.endsWith(end)) {
-//         hasValidEnding = true;
-//         break;
-//       }
-//     }
-
-//     return hasValidEnding;
-//   }
-
-//   function ValidPassword(password) {
-//     let value = password.trim();
-//     if (value.length < 6) return false;
-
-//     let hasLower = false;
-//     let hasUpper = false;
-//     let hasNumber = false;
-
-//     for (let char of value) {
-//       if (char >= "a" && char <= "z") hasLower = true;
-//       else if (char >= "A" && char <= "Z") hasUpper = true;
-//       else if (char >= "0" && char <= "9") hasNumber = true;
-//     }
-
-//     return hasLower && hasUpper && hasNumber;
-//   }
-
-//   return (
-//     <div className="loginpage flex justify-center items-center h-screen w-full bg-gradient-to-br from-[#667eea] via-[#764ba2] via-[#6bcbef] to-[#a17fe0] bg-[length:400%_400%] animate-gradient">
-//       <form
-//         onSubmit={OnSubmitForm}
-//         className="form flex flex-col gap-5 text-white shadow-lg rounded-2xl max-w-sm w-full px-8 py-6 bg-black/40 backdrop-blur-md bg-[url('/public/loginBackgroundimg.jpg')] bg-center bg-no-repeat bg-local bg-cover p-6 rounded-xl shadow-lg"
-//       >
-//         <h1 className="text-5xl font-bold text-center mb-6">Login</h1>
-
-//         <input
-//           className="border-b-2 border-white focus:bg-white focus:text-black rounded-md px-3 py-2 outline-none w-full"
-//           type="email"
-//           placeholder="Email Address"
-//           value={Email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           required
-//         />
-
-//         <input
-//           className="border-b-2 border-white focus:bg-white focus:text-black rounded-md px-3 py-2 outline-none w-full"
-//           type="password"
-//           placeholder="Password"
-//           value={Password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           required
-//         />
-
-//         <button className="loginbtn bg-purple-950 text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out hover:bg-purple-800 hover:scale-105">
-//           Log In
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default Login;
-
 import React from "react";
 import { useState } from "react";
+import { login } from "../servics/api";
+import { Link } from "react-router-dom";
 
 function Login() {
-  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
+
+  // Improved email validation with regex for better accuracy
+  function validEmail(email) {
+    const re =
+      /^[a-zA-Z][\w.-]+@[a-zA-Z\d-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
+    // starts with letter, valid chars before @, valid domain and extension(s)
+    return re.test(email.trim());
+  }
+
+  // Password validation requiring at least 6 chars, with uppercase, lowercase, and number
+  function validPassword(password) {
+    const value = password.trim();
+    if (value.length < 6) return false;
+    const hasLower = /[a-z]/.test(value);
+    const hasUpper = /[A-Z]/.test(value);
+    const hasNumber = /\d/.test(value);
+    return hasLower && hasUpper && hasNumber;
+  }
+
+  async function onSubmitForm(e) {
+    e.preventDefault();
+    const newErrors = { email: "", password: "" };
+
+    if (!validEmail(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+    if (!validPassword(password)) {
+      newErrors.password =
+        "Password must be at least 6 characters and include uppercase, lowercase, and a number.";
+    }
+
+    setErrors(newErrors);
+
+    // If no errors, proceed
+    if (!newErrors.email && !newErrors.password) {
+      const data = await login(email, password);
+      localStorage.setItem("token", data.userData.token);
+    }
+  }
 
   return (
-    <form>
-      <input
-        values={email}
-        label="Email address"
-        id="email-address"
-        name="email"
-        type="email"
-        onChange={() => setEmail(email)}
-        required
-        autoComplete="email"
-        placeholder="Email or Username"
-      />
-      <input
-        value={password}
-        onChange={() => setPassword(password)}
-        label="Password"
-        id="xyz"
-        name="password"
-        type="password"
-        required
-        autoComplete="current-password"
-        placeholder="Password"
-      />
-      <button type="sumbit">Login</button>
-    </form>
+    <div className="loginpage flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-600 to-indigo-600 px-4">
+      <form
+        onSubmit={onSubmitForm}
+        noValidate
+        className="form flex flex-col gap-6 text-white shadow-lg rounded-2xl max-w-md w-full px-10 py-8  bg-black/40 backdrop-blur-md"
+      >
+        <h1 className="text-5xl font-bold text-center mb-6">Login</h1>
+
+        <div className="flex flex-col">
+          <input
+            className={`border-b-2 px-3 py-2 rounded-md outline-none w-full transition-colors ${
+              errors.email
+                ? "border-red-500 bg-red-100 text-red-900"
+                : "border-white focus:bg-white focus:text-black"
+            }`}
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            aria-describedby="email-error"
+            aria-invalid={errors.email ? "true" : "false"}
+            required
+          />
+          {errors.email && (
+            <p
+              id="email-error"
+              className="text-red-500 mt-1 text-sm font-semibold"
+              role="alert"
+            >
+              {errors.email}
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col">
+          <input
+            className={`border-b-2 px-3 py-2 rounded-md outline-none w-full transition-colors ${
+              errors.password
+                ? "border-red-500 bg-red-100 text-red-900"
+                : "border-white focus:bg-white focus:text-black"
+            }`}
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            aria-describedby="password-error"
+            aria-invalid={errors.password ? "true" : "false"}
+            required
+          />
+          {errors.password && (
+            <p
+              id="password-error"
+              className="text-red-500 mt-1 text-sm font-semibold"
+              role="alert"
+            >
+              {errors.password}
+            </p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="loginbtn bg-purple-950 text-white px-6 py-3 rounded-lg font-semibold transition-transform duration-300 ease-in-out hover:bg-purple-800 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500"
+        >
+          Log In
+        </button>
+
+        <Link to="/sigup">
+          Your hane don't ac Please{" "}
+          <span className="text-red-500 capitalize font-bold">Signup</span>{" "}
+        </Link>
+      </form>
+    </div>
   );
 }
 

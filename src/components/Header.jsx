@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = ({ auth }) => {
   const handleLogOut = async () => {
@@ -10,6 +10,7 @@ const Header = ({ auth }) => {
       );
       const data = res.data;
       console.log(data);
+      localStorage.setItem("token", "");
     } catch (e) {
       console.log("logout erro", e);
     }
@@ -45,7 +46,7 @@ const Header = ({ auth }) => {
               </NavLink>
             </nav>
             <div className="login-btn self-center">
-              {auth ? (
+              {auth !== "" ? (
                 <button
                   onClick={handleLogOut}
                   className="login border-1 rounded-3xl text-[20px] hover:border-purple-500 hover:text-purple-500  cursor-pointer  bg-purple-400 text-white"

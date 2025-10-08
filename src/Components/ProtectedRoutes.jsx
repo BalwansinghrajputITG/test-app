@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 const ProtectedRoutes = ({ auth }) => {
-  return auth === true ? <Outlet /> : <Navigate to="/" replace />;
+  console.log(auth);
+  return auth !== "" ? <Outlet /> : <Navigate to="/login" replace />;
 };
 export default ProtectedRoutes;
