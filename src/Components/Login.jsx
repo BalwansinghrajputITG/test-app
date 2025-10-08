@@ -5,15 +5,13 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
 
-  // Improved email validation with regex for better accuracy
+
   function validEmail(email) {
     const re =
       /^[a-zA-Z][\w.-]+@[a-zA-Z\d-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
-    // starts with letter, valid chars before @, valid domain and extension(s)
     return re.test(email.trim());
   }
 
-  // Password validation requiring at least 6 chars, with uppercase, lowercase, and number
   function validPassword(password) {
     const value = password.trim();
     if (value.length < 6) return false;
@@ -37,14 +35,11 @@ function Login() {
 
     setErrors(newErrors);
 
-    // If no errors, proceed
+    
     if (!newErrors.email && !newErrors.password) {
       console.log("Login successful!");
       console.log("Email:", email);
       console.log("Password:", password);
-      // Reset form if needed:
-      // setEmail("");
-      // setPassword("");
     }
   }
 

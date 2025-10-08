@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PopUp from '../components/PopUp'
+import { useMyFunctions } from '../components/Context';
 
 const Testpage = () => {
 
+    const [showPopup, setShowPopup] = useState(false);
+    const {onStart} = useMyFunctions(""); 
+
+    useEffect(()=>{
+        setShowPopup(true);
+    })
+
+    const handleStart = ()=>{
+        setShowPopup(false);
+    }
+
     return (
         <div className='test-wrapper bg-[#2a1e55] w-full h-screen'>
-            <PopUp />
+            <PopUp onStart={handleStart}/>
             <div className='test-box' >
                 <div className='box-heading'>
                     <h2 className='text-4xl text-center font-bold text-white'>Start-test</h2>
