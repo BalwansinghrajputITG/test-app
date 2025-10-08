@@ -1,22 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import { login } from "../servics/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useMyFunctions } from "./Context";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
-  // Improved email validation with regex for better accuracy
+  const { isAuth, setIsAuth } = useMyFunctions();
+
   function validEmail(email) {
     const re =
       /^[a-zA-Z][\w.-]+@[a-zA-Z\d-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
-    // starts with letter, valid chars before @, valid domain and extension(s)
     return re.test(email.trim());
   }
 
-  // Password validation requiring at least 6 chars, with uppercase, lowercase, and number
   function validPassword(password) {
     const value = password.trim();
     if (value.length < 6) return false;
@@ -40,10 +41,18 @@ function Login() {
 
     setErrors(newErrors);
 
-    // If no errors, proceed
     if (!newErrors.email && !newErrors.password) {
       const data = await login(email, password);
-      localStorage.setItem("token", data.userData.token);
+      if (data) {
+        localStorage.setItem("token", data.userData.token);
+        localStorage.setItem("user", JSON.stringify(data.userData));
+        const token = localStorage.getItem("token");
+        if (token) {
+          setIsAuth(token);
+          console.log("home");
+          navigate("/");
+        }
+      }
     }
   }
 

@@ -11,27 +11,24 @@ import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Dashboard from "./pages/Dashboard";
 import SignUp from "./Components/Signup";
 import { useEffect } from "react";
+import { MyContextProvider } from "./components/Context";
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState("");
-
-  useEffect(() => {
-    setIsAuth(localStorage.getItem("token"));
-  }, []);
-
   return (
-    <div>
-      <Header auth={isAuth} />
-      <Routes>
-        <Route index element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/sigup" element={<SignUp />}></Route>
-        <Route element={<ProtectedRoutes auth={isAuth} />}>
-          <Route path="/test" element={<Testpage />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
-        </Route>
-      </Routes>
-    </div>
+    <MyContextProvider>
+      <div>
+        <Header />
+        <Routes>
+          <Route index element={<Home />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/sigup" element={<SignUp />}></Route>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/test" element={<Testpage />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+          </Route>
+        </Routes>
+      </div>
+    </MyContextProvider>
   );
 };
 

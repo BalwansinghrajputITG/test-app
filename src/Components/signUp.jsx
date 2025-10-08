@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { singup } from "../servics/api";
+import { useMyFunctions } from "./Context";
 
 export default function SignUp() {
   const [data, setData] = useState({
@@ -18,6 +19,9 @@ export default function SignUp() {
     password: "",
     userClass: "",
   });
+
+  const navigate = useNavigate();
+  const { isAuth, setIsAuth } = useMyFunctions();
 
   // ✅ Validations
 
@@ -93,6 +97,12 @@ export default function SignUp() {
       console.log("✅ Form submitted successfully:", data);
       const userData = await singup(data);
       localStorage.setItem("token", userData.userData.token);
+      localStorage.setItem("user", SON.stringify(userData.userData));
+      const token = localStorage.getItem("token");
+      if (token !== "") {
+        setIsAuth(token);
+        navigate("/");
+      }
     }
   };
 

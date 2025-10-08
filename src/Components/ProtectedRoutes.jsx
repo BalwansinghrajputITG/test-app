@@ -1,6 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
-const ProtectedRoutes = ({ auth }) => {
-  console.log(auth);
-  return auth !== "" ? <Outlet /> : <Navigate to="/login" replace />;
+import { useMyFunctions } from "./Context";
+
+const ProtectedRoutes = () => {
+  const { isAuth } = useMyFunctions();
+  console.log("main route", isAuth);
+  return isAuth ? <Outlet /> : <Navigate to="/login" replace />;
 };
 export default ProtectedRoutes;
