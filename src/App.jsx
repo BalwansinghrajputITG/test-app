@@ -16,10 +16,8 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path='/login' element={<Login />}></Route>
       </Routes>
-
-
     </div>
-  )
-}
+  );
+};
 
 export default App;

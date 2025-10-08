@@ -1,24 +1,17 @@
 @import "tailwindcss";
 
-* {
-    margin: 0px;
-    padding: 0px;
-    text-decoration: none;
-    box-sizing: border-box;
-}
-
 body {
     overflow: hidden;
 }
 
 .page-width {
-    max-width: 95%;
-    margin: auto;
+  max-width: 95%;
+  margin: auto;
 }
 
 .header-wrapper {
-    background-color: rgba(64, 36, 165, 0.616);
-    animation: fadeIn 1500ms;
+  background-color: rgba(64, 36, 165, 0.616);
+  animation: fadeIn 1500ms;
 }
 
 @keyframes fadeIn {
@@ -32,12 +25,12 @@ body {
 }
 
 .header-grid {
-    padding: 20px 0px;
+  padding: 20px 0px;
 }
 
 .user-box {
-    padding: 5px 15px;
-    border-radius: 99px;
+  padding: 5px 15px;
+  border-radius: 99px;
 }
 
 .profile {
@@ -46,21 +39,25 @@ body {
 }
 
 .login {
-    padding: 5px 10px 8px 10px;
-    transition: all .3s;
+  padding: 5px 10px 8px 10px;
+  transition: all 0.3s;
 }
 
 .login:hover {
     background: transparent;
     color: white;
-    border: 1px solid white;
+    border: 1px solid rgb(35, 21, 73);
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+
 }
 
 .card {
-    box-shadow: 0px 5px 12px 5px black;
-    cursor: pointer;
-    transition: all .4s ease-out;
-    animation: slideUp 1400ms;
+  box-shadow: 0px 5px 12px 5px black;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  animation: slideUp 1400ms;
 }
 
 @keyframes slideUp {
@@ -71,17 +68,19 @@ body {
 
     100% {
         opacity: 1;
-        transform: translateY(0px);
+        transform: translateY(10px);
     }
 }
 
+
 .card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 8px 12px 6px rgb(75, 3, 94);
+  transform: translateY(-20px);
+  box-shadow: 0px 8px 12px 6px rgb(75, 3, 94);
+
 }
 
 .card-list {
-    padding: 20px 0px;
+  padding: 20px 0px;
 }
 
 .content {
@@ -90,7 +89,12 @@ body {
 }
 
 .card:hover .content {
-    height: 100px;
+
+    height: 65px;
+    transition-delay: 4s;
+
+  height: 100px;
+
 }
 
 .navs-link {

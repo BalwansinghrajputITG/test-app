@@ -1,111 +1,122 @@
 import React, { useState } from "react";
 
 function Login() {
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
 
-  function OnSubmitForm(e) {
+  // Improved email validation with regex for better accuracy
+  function validEmail(email) {
+    const re =
+      /^[a-zA-Z][\w.-]+@[a-zA-Z\d-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
+    // starts with letter, valid chars before @, valid domain and extension(s)
+    return re.test(email.trim());
+  }
+
+  // Password validation requiring at least 6 chars, with uppercase, lowercase, and number
+  function validPassword(password) {
+    const value = password.trim();
+    if (value.length < 6) return false;
+    const hasLower = /[a-z]/.test(value);
+    const hasUpper = /[A-Z]/.test(value);
+    const hasNumber = /\d/.test(value);
+    return hasLower && hasUpper && hasNumber;
+  }
+
+  function onSubmitForm(e) {
     e.preventDefault();
-    if (ValidEmail && ValidPassword) {
-      console.log(Email, Password);
+    const newErrors = { email: "", password: "" };
+
+    if (!validEmail(email)) {
+      newErrors.email = "Please enter a valid email address.";
     }
-  }
-function ValidEmail(email) {
-  let value = email.trim();
-
-  if (value === "") return false;
-
-  if (!value.includes("@") || !value.includes(".")) return false;
-
-  if (value[0] === "@" || value[0] === ".") return false;
-
-  if (value[value.length - 1] === "@" || value[value.length - 1] === ".") return false;
-
-  const atIndex = value.indexOf("@");
-  const dotIndex = value.lastIndexOf(".");
-  if (atIndex > dotIndex) return false;
-
-  if (dotIndex - atIndex <= 1) return false;
-
-  if (value[0] >= "0" && value[0] <= "9") return false;
-
-  const validEndings = [".com", ".in", ".org", ".net"];
-  let hasValidEnding = false;
-
-  for (let end of validEndings) {
-    if (value.endsWith(end)) {
-      hasValidEnding = true;
-      break;
-    }
-  }
-
-  if (!hasValidEnding) return false;
-
-
-  return true;
-}
-
-
-  function ValidPassword(Password) {
-    let value = Password;
-    if (value.length < 6) {
-      return false;
-    }
-    if (!(value > "a") || value < "z") {
-      return false;
+    if (!validPassword(password)) {
+      newErrors.password =
+        "Password must be at least 6 characters and include uppercase, lowercase, and a number.";
     }
 
-    return true;
+    setErrors(newErrors);
+
+    // If no errors, proceed
+    if (!newErrors.email && !newErrors.password) {
+      console.log("Login successful!");
+      console.log("Email:", email);
+      console.log("Password:", password);
+      // Reset form if needed:
+      // setEmail("");
+      // setPassword("");
+    }
   }
 
   return (
-    <>
-      <div className="loginpage">
-        <form
-          onSubmit={OnSubmitForm}
-          className="form flex text-white flex-col gap-5 m-auto  justify-center shadow-lg   rounded-2xl max-w-sm w-full px-8 py-6"
+    <div className="loginpage flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-600 to-indigo-600 px-4">
+      <form
+        onSubmit={onSubmitForm}
+        noValidate
+        className="form flex flex-col gap-6 text-white shadow-lg rounded-2xl max-w-md w-full px-10 py-8  bg-black/40 backdrop-blur-md"
+      >
+        <h1 className="text-5xl font-bold text-center mb-6">Login</h1>
+
+        <div className="flex flex-col">
+          <input
+            className={`border-b-2 px-3 py-2 rounded-md outline-none w-full transition-colors ${
+              errors.email
+                ? "border-red-500 bg-red-100 text-red-900"
+                : "border-white focus:bg-white focus:text-black"
+            }`}
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            aria-describedby="email-error"
+            aria-invalid={errors.email ? "true" : "false"}
+            required
+          />
+          {errors.email && (
+            <p
+              id="email-error"
+              className="text-red-500 mt-1 text-sm font-semibold"
+              role="alert"
+            >
+              {errors.email}
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-col">
+          <input
+            className={`border-b-2 px-3 py-2 rounded-md outline-none w-full transition-colors ${
+              errors.password
+                ? "border-red-500 bg-red-100 text-red-900"
+                : "border-white focus:bg-white focus:text-black"
+            }`}
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            aria-describedby="password-error"
+            aria-invalid={errors.password ? "true" : "false"}
+            required
+          />
+          {errors.password && (
+            <p
+              id="password-error"
+              className="text-red-500 mt-1 text-sm font-semibold"
+              role="alert"
+            >
+              {errors.password}
+            </p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="loginbtn bg-purple-950 text-white px-6 py-3 rounded-lg font-semibold transition-transform duration-300 ease-in-out hover:bg-purple-800 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500"
         >
-          <h1 className="text-5xl font-bold text-center text-white mb-6">
-            Login
-          </h1>
-          <label htmlFor="Name" className=" text-white font-medium mb-1 w-full">
-            <input
-              className="border-b-2 focus:bg-white focus:rounded-md focus:text-black text-white bodrer-b-md px-3 py-2  inline-block outline-none w-full "
-              type="email"
-              id="Name"
-              placeholder="Email Address"
-              value={Email}
-              required
-              onChange={(e) => {
-                if (ValidEmail) {
-                  setEmail(e.target.value);
-                }
-              }}
-            />
-          </label>
-          <label htmlFor="password" className="text-gray-700 font-medium mb-1">
-            <input
-              className="border-b-2 focus:bg-white focus:rounded-md focus:text-black text-white bodrer-b-md px-3 py-2  inline-block outline-none w-full "
-              type="password"
-              id="password"
-              placeholder="Password"
-              value={Password}
-              required
-
-              onChange={(e) => {
-                if (ValidPassword) {
-                  setPassword(e.target.value);
-                }
-              }}
-            />
-          </label>
-
-          <button className="loginbtn bg-purple-950 text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out hover:bg-purple-800 hover:scale-105">
-            Log In
-          </button>
-        </form>
-      </div>
-    </>
+          Log In
+        </button>
+      </form>
+    </div>
   );
 }
 

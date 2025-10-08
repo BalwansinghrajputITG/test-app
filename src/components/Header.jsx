@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import React from "react";
+import { Link,NavLink } from "react-router-dom";
 
 const Header = () => {
 
@@ -12,14 +12,22 @@ const Header = () => {
               <div className='image rounded-4xl'>
                 <img className='rounded-4xl w-21 h-full' src='./public/images/logo.png' />
               </div>
-              <h1 className='text-white text-4xl font-bold font-stretch-50% self-center'>QuizGecko</h1>
+              <h1 className="text-white text-4xl font-bold font-stretch-50% self-center">
+                QuizGecko
+              </h1>
             </div>
           </div>
-          <div className='header-navs flex gap-10'>
-            <nav className='navs flex gap-10 text-[18px] font-bold uppercase  self-center text-white ' >
-              <NavLink className={"navs-link"} to="/">Home</NavLink>
-              <NavLink className={"navs-link"} to="/about">About</NavLink>
-              <NavLink className={"navs-link"} to="/history">History</NavLink>
+          <div className="header-navs flex gap-10">
+            <nav className="navs flex gap-10 text-[18px] font-bold uppercase  self-center text-white ">
+              <NavLink className={"navs-link"} to="/">
+                Home
+              </NavLink>
+              <NavLink className={"navs-link"} to="/about">
+                About
+              </NavLink>
+              <NavLink className={"navs-link"} to="/history">
+                History
+              </NavLink>
             </nav>
             <div className='login-btn self-center'>
               <Link to={"/login"}>
@@ -28,8 +36,8 @@ const Header = () => {
                 </button>
               </Link>
             </div>
-            <div className='profile'>
-              <div className='user-box font-bold text-2xl border-1 cursor-pointer bg-purple-400 text-white'>
+            <div className="profile">
+              <div className="user-box font-bold text-2xl border-1 cursor-pointer bg-purple-400 text-white">
                 P
               </div>
             </div>
@@ -37,7 +45,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
