@@ -7,9 +7,11 @@ const Header = () => {
       <div className='page-width'>
         <div className='header-grid flex justify-between'>
           <div className='header-logo'>
-            <div className='logo cursor-pointer'>
-              <div className='image'></div>
-              <h1 className='text-white text-4xl font-bold font-stretch-50%'>QuizGecko</h1>
+            <div className='logo cursor-pointer flex gap-2' >
+              <div className='image rounded-4xl'>
+                <img className='rounded-4xl w-21 h-full' src='./public/images/logo.png'/>
+              </div>
+              <h1 className='text-white text-4xl font-bold font-stretch-50% self-center'>QuizGecko</h1>
             </div>
           </div>
           <div className='header-navs flex gap-10'>

@@ -36,6 +36,10 @@ body{
     padding: 5px 15px;
     border-radius: 99px;
 }
+.profile{
+    display: flex;
+    align-items: center;
+}
 
 .login {
     padding: 5px 10px 8px 10px;
