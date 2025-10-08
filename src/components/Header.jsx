@@ -1,18 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 
 const Header = () => {
+
   return (
-    <div className="header-wrapper fixed w-full ">
-      <div className="page-width">
-        <div className="header-grid flex justify-between">
-          <div className="header-logo">
-            <div className="logo cursor-pointer flex gap-2">
-              <div className="image rounded-4xl">
-                <img
-                  className="rounded-4xl w-21 h-full"
-                  src="./public/images/logo.png"
-                />
+    <div className='header-wrapper fixed w-full '>
+      <div className='page-width'>
+        <div className='header-grid flex justify-between'>
+          <div className='header-logo'>
+            <div className='logo cursor-pointer flex gap-2' >
+              <div className='image rounded-4xl'>
+                <img className='rounded-4xl w-21 h-full' src='./public/images/logo.png' />
               </div>
               <h1 className="text-white text-4xl font-bold font-stretch-50% self-center">
                 QuizGecko
@@ -31,13 +29,12 @@ const Header = () => {
                 History
               </NavLink>
             </nav>
-            <div className="login-btn self-center">
-              <NavLink
-                to="/login"
-                className="login border-1 rounded-3xl text-[20px] hover:border-purple-500 hover:text-purple-500  cursor-pointer  bg-purple-400 text-white"
-              >
-                Login
-              </NavLink>
+            <div className='login-btn self-center'>
+              <Link to={"/login"}>
+                <button className='login border-1 rounded-3xl text-[20px] hover:border-purple-500 hover:text-purple-500  cursor-pointer  bg-purple-400 text-white'>
+                  Login
+                </button>
+              </Link>
             </div>
             <div className="profile">
               <div className="user-box font-bold text-2xl border-1 cursor-pointer bg-purple-400 text-white">

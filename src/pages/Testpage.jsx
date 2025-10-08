@@ -1,8 +1,11 @@
 import React from 'react'
+import PopUp from '../components/PopUp'
 
 const Testpage = () => {
+
     return (
         <div className='test-wrapper bg-[#2a1e55] w-full h-screen'>
+            <PopUp />
             <div className='test-box' >
                 <div className='box-heading'>
                     <h2 className='text-4xl text-center font-bold text-white'>Start-test</h2>
@@ -21,7 +24,7 @@ const Testpage = () => {
                     </div>
                     <div className='buttons flex justify-between'>
                         <div className='prev-btn cursor-pointer font-bold text-white '>◀ Previous</div>
-                         <button className='sub-btn font-bold '>Submit</button>
+                        <button className='sub-btn font-bold '>Submit</button>
                         <div className='next-btn cursor-pointer font-bold text-white '>Next ▶</div>
                     </div>
                 </div>

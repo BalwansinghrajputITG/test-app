@@ -1,11 +1,10 @@
-import Header from "./components/Header";
-import React from "react";
-import Home from "./pages/Home";
-import { Route, Routes } from "react-router-dom";
-import Testpage from "./pages/Testpage";
-//import Login from "./Components/Login";
-import SignUp from "./Components/Signup";
-import Login from "./Components/Login";
+import Header from './components/Header'
+import React from 'react'
+import Home from './pages/Home';
+import { Route, Routes } from 'react-router-dom';
+import Testpage from './pages/Testpage';
+import Dashboard from './pages/Dashboard';
+import Login from './components/Login';
 
 const App = () => {
   return (
@@ -14,7 +13,8 @@ const App = () => {
       <Routes>
         <Route index element={<Home />}></Route>
         <Route path="/test" element={<Testpage />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path='/login' element={<Login />}></Route>
       </Routes>
     </div>
   );

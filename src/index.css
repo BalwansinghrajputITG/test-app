@@ -1,13 +1,7 @@
 @import "tailwindcss";
 
-* {
-  margin: 0px;
-  padding: 0px;
-  text-decoration: none;
-  box-sizing: border-box;
-}
 body {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .page-width {
@@ -19,13 +13,15 @@ body {
   background-color: rgba(64, 36, 165, 0.616);
   animation: fadeIn 1500ms;
 }
+
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .header-grid {
@@ -36,9 +32,10 @@ body {
   padding: 5px 15px;
   border-radius: 99px;
 }
+
 .profile {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .login {
@@ -62,13 +59,14 @@ body {
   transition: all 0.4s ease-out;
   animation: slideUp 1400ms;
 }
-@keyframes slideUp {
 
-    0%{
+@keyframes slideUp {
+    0% {
         opacity: 0;
         transform: translateY(30px);
     }
-    100%{
+
+    100% {
         opacity: 1;
         transform: translateY(10px);
     }
@@ -86,8 +84,8 @@ body {
 }
 
 .content {
-  transition: all 0.4s ease-out;
-  padding: 10px 0px;
+    transition: all .4s ease-out;
+    padding: 10px 0px;
 }
 
 .card:hover .content {
@@ -100,105 +98,89 @@ body {
 }
 
 .navs-link {
-  border-bottom: 2px solid rgba(255, 206, 255, 0);
-  transition: all 0.4s;
+    border-bottom: 2px solid rgba(255, 206, 255, 0);
+    ;
+    transition: all .4s;
 }
+
 .navs-link:hover {
-  border-bottom: 2px solid white;
-  /* color: rgb(179, 12, 179); */
+    border-bottom: 2px solid white;
+    /* color: rgb(179, 12, 179); */
 }
+
 .bg {
-  box-shadow: inset 0px 0px 12px 5px black;
+    box-shadow: inset 0px 0px 12px 5px black;
 }
-.test-box {
-  padding: 25px 40px;
-  border: 1px solid rgb(237, 192, 255);
-  box-shadow: 0px 0px 13px 4px rgb(71, 32, 143);
-  border-radius: 30px;
-  animation: fadeIn 1300ms;
+
+.test-box,
+.dashboard {
+    padding: 25px 40px;
+    border: 1px solid rgb(237, 192, 255);
+    box-shadow: 0px 0px 13px 4px rgb(71, 32, 143);
+    border-radius: 30px;
+    animation: fadeIn 1300ms;
 }
+
 .test-wrapper {
-  padding: 170px;
+    padding: 170px;
 }
 
-.test-content {
-  background-color: rgb(35, 21, 73);
-  padding: 10px 20px;
-  border-radius: 20px;
-  margin-top: 15px;
+
+.test-content,
+.dash-content {
+    background-color: rgb(35, 21, 73);
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-top: 15px;
 }
-.options-div {
-  background: rgb(46, 28, 100);
-  padding: 10px;
-  margin-top: 20px;
-  border-radius: 20px;
-  cursor: pointer;
+
+.options-div,
+.scores {
+    background: rgb(46, 28, 100);
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    cursor: pointer;
 }
+
 .buttons {
-  margin: 20px 0px;
-  padding: 0px 20px;
-  align-items: center;
+    margin: 20px 0px;
+    padding: 0px 20px;
+    align-items: center;
 }
+
 .sub-btn {
-  padding: 10px 15px;
-  background: rgb(143, 255, 143);
-  border: 1px solid black;
-  border-radius: 20px;
-  cursor: pointer;
+    padding: 10px 15px;
+    background: rgb(143, 255, 143);
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
 }
+
 .next-btn {
-  padding-left: 15px;
+    padding-left: 15px;
 }
 
-.loginpage {
-  max-width: 100%;
-  background: linear-gradient(-45deg, #667eea, #764ba2, #6bcbef, #a17fe0);
-  background-size: 400% 400%;
-  height: 100%;
+.dash-content {
+    padding: 30px 20px;
 }
 
-.loginpage {
-  height: 100vh;
-  width: 100%;
-  background: linear-gradient(-45deg, #667eea, #764ba2, #6bcbef, #a17fe0);
-  background-size: 400% 400%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.pop-up {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 200px;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient {
-  animation: gradientShift 10s ease infinite;
-}
-
-.sign-up-form {
-  background-image: url("./assets/main-bg.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.sign-up-page {
-  height: 100vh;
-  width: 100%;
-  background: linear-gradient(-45deg, #667eea, #764ba2, #6bcbef, #a17fe0);
-  background-size: 400% 400%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.submit:hover {
-  background: green;
+.pop-bg {
+    background: rgb(10, 3, 24);
+    position: absolute;
+    top: 14%;
+    left: 0;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
