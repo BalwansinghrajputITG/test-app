@@ -160,10 +160,23 @@ body {
 .dash-content {
     padding: 30px 20px;
 }
-.pop-up{
+
+.pop-up {
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
+    margin-bottom: 200px;
+}
+
+.pop-bg {
+    background: rgb(10, 3, 24);
+    position: absolute;
+    top: 14%;
+    left: 0;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
