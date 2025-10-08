@@ -30,7 +30,7 @@ const Header = () => {
       localStorage.removeItem("user");
       const token = localStorage.getItem("token");
       console.log(token);
-      if (token == "") {
+      if (!token) {
         setIsAuth(token);
         navigate("/login");
       }

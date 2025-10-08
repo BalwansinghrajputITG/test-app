@@ -6,7 +6,7 @@ const Dashboard = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user")) || {};
     setData(user);
   }, []);
 
