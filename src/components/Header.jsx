@@ -1,7 +1,20 @@
+import axios from "axios";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ auth }) => {
+  const handleLogOut = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/user/logout"
+      );
+      const data = res.data;
+      console.log(data);
+    } catch (e) {
+      console.log("logout erro", e);
+    }
+  };
+
   return (
     <div className="header-wrapper fixed w-full ">
       <div className="page-width">
@@ -32,12 +45,21 @@ const Header = () => {
               </NavLink>
             </nav>
             <div className="login-btn self-center">
-              <NavLink
-                to="/login"
-                className="login border-1 rounded-3xl text-[20px] hover:border-purple-500 hover:text-purple-500  cursor-pointer  bg-purple-400 text-white"
-              >
-                Login
-              </NavLink>
+              {auth ? (
+                <button
+                  onClick={handleLogOut}
+                  className="login border-1 rounded-3xl text-[20px] hover:border-purple-500 hover:text-purple-500  cursor-pointer  bg-purple-400 text-white"
+                >
+                  Logout
+                </button>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className="login border-1 rounded-3xl text-[20px] hover:border-purple-500 hover:text-purple-500  cursor-pointer  bg-purple-400 text-white"
+                >
+                  Login
+                </NavLink>
+              )}
             </div>
             <div className="profile">
               <div className="user-box font-bold text-2xl border-1 cursor-pointer bg-purple-400 text-white">
