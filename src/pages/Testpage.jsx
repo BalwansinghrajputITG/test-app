@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PopUp from '../components/PopUp'
 import { useMyFunctions } from '../components/Context';
+import TimerFunc from '../components/timer';
 
 const Testpage = () => {
 
@@ -18,6 +19,7 @@ const Testpage = () => {
     return (
         <div className='test-wrapper bg-[#2a1e55] w-full h-screen'>
             <PopUp onStart={handleStart}/>
+            <TimerFunc />
             <div className='test-box' >
                 <div className='box-heading'>
                     <h2 className='text-4xl text-center font-bold text-white'>Start-test</h2>
