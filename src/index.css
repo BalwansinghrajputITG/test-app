@@ -1,1 +1,96 @@
 @import "tailwindcss";
+
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+body{
+    overflow: hidden;
+}
+
+.page-width {
+    max-width: 95%;
+    margin: auto;
+}
+
+.header-wrapper {
+    background-color: rgba(64, 36, 165, 0.616);
+    animation: fadeIn 1500ms;
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.header-grid {
+    padding: 20px 0px;
+}
+
+.user-box {
+    padding: 5px 15px;
+    border-radius: 99px;
+}
+
+.login {
+    padding: 5px 10px 8px 10px;
+    transition: all .3s;
+}
+
+.login:hover {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.card {
+    box-shadow: 0px 5px 12px 5px black;
+    cursor: pointer;
+    transition: all .4s ease-out;
+    animation: slideUp 1400ms;
+}
+@keyframes slideUp {
+    0%{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    box-shadow: 0px 8px 12px 6px rgb(75, 3, 94);
+}
+
+.card-list {
+    padding: 20px 0px;
+}
+
+.content {
+    transition: all .4s ease-out;
+    padding: 10px 0px ;
+}
+
+.card:hover .content {
+    height: 100px;
+}
+
+.navs-link{
+    border-bottom: 2px solid rgba(255, 206, 255, 0);;
+    transition: all .4s;
+}
+.navs-link:hover{
+    border-bottom: 2px solid white;
+    /* color: rgb(179, 12, 179); */
+}
+.bg{
+    box-shadow: inset 0px 0px 12px 5px black;
+}
