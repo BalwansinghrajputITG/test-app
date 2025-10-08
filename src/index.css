@@ -6,7 +6,8 @@
     text-decoration: none;
     box-sizing: border-box;
 }
-body{
+
+body {
     overflow: hidden;
 }
 
@@ -19,11 +20,13 @@ body{
     background-color: rgba(64, 36, 165, 0.616);
     animation: fadeIn 1500ms;
 }
+
 @keyframes fadeIn {
-    0%{
+    0% {
         opacity: 0;
     }
-    100%{
+
+    100% {
         opacity: 1;
     }
 }
@@ -36,7 +39,8 @@ body{
     padding: 5px 15px;
     border-radius: 99px;
 }
-.profile{
+
+.profile {
     display: flex;
     align-items: center;
 }
@@ -58,12 +62,14 @@ body{
     transition: all .4s ease-out;
     animation: slideUp 1400ms;
 }
+
 @keyframes slideUp {
-    0%{
+    0% {
         opacity: 0;
         transform: translateY(30px);
     }
-    100%{
+
+    100% {
         opacity: 1;
         transform: translateY(0px);
     }
@@ -80,61 +86,84 @@ body{
 
 .content {
     transition: all .4s ease-out;
-    padding: 10px 0px ;
+    padding: 10px 0px;
 }
 
 .card:hover .content {
     height: 100px;
 }
 
-.navs-link{
-    border-bottom: 2px solid rgba(255, 206, 255, 0);;
+.navs-link {
+    border-bottom: 2px solid rgba(255, 206, 255, 0);
+    ;
     transition: all .4s;
 }
-.navs-link:hover{
+
+.navs-link:hover {
     border-bottom: 2px solid white;
     /* color: rgb(179, 12, 179); */
 }
-.bg{
+
+.bg {
     box-shadow: inset 0px 0px 12px 5px black;
 }
-.test-box{
+
+.test-box,
+.dashboard {
     padding: 25px 40px;
     border: 1px solid rgb(237, 192, 255);
     box-shadow: 0px 0px 13px 4px rgb(71, 32, 143);
     border-radius: 30px;
-     animation: fadeIn 1300ms; 
+    animation: fadeIn 1300ms;
 }
-.test-wrapper{
+
+.test-wrapper {
     padding: 170px;
 }
 
 
-.test-content{
+.test-content,
+.dash-content {
     background-color: rgb(35, 21, 73);
     padding: 10px 20px;
     border-radius: 20px;
-    margin-top: 15px; 
+    margin-top: 15px;
 }
-.options-div{
+
+.options-div,
+.scores {
     background: rgb(46, 28, 100);
     padding: 10px;
     margin-top: 20px;
     border-radius: 20px;
     cursor: pointer;
 }
+
 .buttons {
-    margin: 20px 0px ;
+    margin: 20px 0px;
     padding: 0px 20px;
     align-items: center;
 }
-.sub-btn{
-    padding: 10px 15px ;
+
+.sub-btn {
+    padding: 10px 15px;
     background: rgb(143, 255, 143);
     border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
 }
-.next-btn{
+
+.next-btn {
     padding-left: 15px;
+}
+
+.dash-content {
+    padding: 30px 20px;
+}
+.pop-up{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
 }

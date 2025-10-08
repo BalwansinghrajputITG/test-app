@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Testpage = () => {
+
     return (
         <div className='test-wrapper bg-[#2a1e55] w-full h-screen'>
             <div className='test-box' >
@@ -21,7 +22,7 @@ const Testpage = () => {
                     </div>
                     <div className='buttons flex justify-between'>
                         <div className='prev-btn cursor-pointer font-bold text-white '>◀ Previous</div>
-                         <button className='sub-btn font-bold '>Submit</button>
+                        <button className='sub-btn font-bold '>Submit</button>
                         <div className='next-btn cursor-pointer font-bold text-white '>Next ▶</div>
                     </div>
                 </div>
