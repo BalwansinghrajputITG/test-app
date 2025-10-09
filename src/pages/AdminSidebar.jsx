@@ -1,16 +1,18 @@
 import React from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import { useMyFunctions } from "../Components/AuthContext";
 
 function AdminSidebar() {
-  const { activeTab, setActiveTab } = useAdminFunctions();
+  const { activeTab, setActiveTab, users } = useAdminFunctions();
+  const { userName } = useMyFunctions();
   return (
     <aside className="h-full w-64 bg-[#241a42] p-4">
       <div className="profile flex items-center mb-10">
         <div className="user-box uppercase font-bold text-2xl bg-purple-400 text-white h-12 w-12 flex items-center justify-center rounded-full">
-          P
+          {userName[0]}
         </div>
-        <div className="admin-name text-white ml-4 text-xl font-semibold">
-          ADMIN
+        <div className="admin-name capitalize text-white ml-4 text-xl font-semibold">
+          {userName}
         </div>
       </div>
       <div className="flex flex-col space-y-4">

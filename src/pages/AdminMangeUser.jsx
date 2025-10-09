@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import { getAllUser } from "../servics/api";
+import { memo } from "react";
 
 function AdminMangeUser() {
   const {
     users,
-    handleRoleChange,
+    user,
     handleAddUser,
     activeTab,
     newUser,
-    setNewUser,
+    userType,
+    handleUserType,
+    handleUserDelete,
   } = useAdminFunctions();
+
+  //console.log(users.length);
 
   return (
     <>
@@ -20,17 +26,16 @@ function AdminMangeUser() {
 
           {/* Add New User */}
           <div className="mb-6">
-            <h3 className="text-lg mb-2">Add New User</h3>
+            <h3 className="text-lg mb-2">Admin</h3>
             <input
               type="text"
               placeholder="Name"
-              value={newUser.name}
-              onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+              value={user.fullName}
               className="p-2 mr-2 text-white"
             />
             <select
-              value={newUser.role}
-              onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
+              value={userType}
+              onChange={(e) => handleUserType(e.target.value)}
               className="p-2 text-white"
             >
               <option className="text-black" value="user">
@@ -59,29 +64,38 @@ function AdminMangeUser() {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <td className="border border-white px-4 py-2">{user.id}</td>
-                  <td className="border border-white px-4 py-2">{user.name}</td>
-                  <td className="border border-white px-4 py-2">{user.role}</td>
-                  <td className="border border-white px-4 py-2">
-                    <select
-                      value={user.role}
-                      onChange={(e) =>
-                        handleRoleChange(user.id, e.target.value)
-                      }
-                      className="text-white p-1"
-                    >
-                      <option className="text-black" value="user">
-                        User
-                      </option>
-                      <option className="text-black" value="admin">
-                        Admin
-                      </option>
-                    </select>
-                  </td>
+              {users.length == 0 ? (
+                <tr>
+                  <th className="border border-white px-4 py-2">--</th>
+                  <th className="border border-white px-4 py-2">--</th>
+                  <th className="border border-white px-4 py-2">--</th>
+                  <th className="border border-white px-4 py-2">--</th>
                 </tr>
-              ))}
+              ) : (
+                users.map((v) => (
+                  <tr
+                    className={`${v._id == user._id ? "bg-green-500" : ""}`}
+                    key={v.id}
+                  >
+                    <td className="border border-white px-4 py-2">{v._id}</td>
+                    <td className="border border-white px-4 py-2">
+                      {v.fullName}
+                    </td>
+                    <td className="border border-white px-4 py-2">{v.role}</td>
+                    <td className="border border-white px-4 py-2">edit</td>
+                    <td
+                      onClick={() => handleUserDelete(v._id, user._id)}
+                      className={` ${
+                        v._id == user._id
+                          ? "bg-green-900 hover:bg-green-500"
+                          : "bg-purple-900 hover:bg-red-600"
+                      }   border cursor-pointer text-center  font-bold  border-white px-4 py-2`}
+                    >
+                      Delete
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -90,4 +104,4 @@ function AdminMangeUser() {
   );
 }
 
-export default AdminMangeUser;
+export default memo(AdminMangeUser);

@@ -12,6 +12,7 @@
 .header-wrapper {
   background-color: rgba(64, 36, 165, 0.616);
   animation: fadeIn 1500ms;
+  z-index: 1001;
 }
 
 @keyframes fadeIn {

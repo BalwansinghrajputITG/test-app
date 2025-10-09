@@ -9,19 +9,21 @@ import { MyContextProvider } from "./Components/AuthContext";
 import AboutPage from "./pages/About";
 import NotFound from "./Components/NotFound";
 import AdminDasbord from "./pages/AdminDasbord";
-//import SignUp from "./Components/Signup";
+import SignUp from "./Components/Signup";
 import { AdminContextProvider } from "./provider/AdminProvider";
 import PrivateRouter from "./Components/PrivateRouter";
+import Alert from "./Components/Alert";
 
 const App = () => {
   return (
     <AdminContextProvider>
       <MyContextProvider>
         <Header />
+
         <Routes>
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
-         {/* // <Route path="/signup" element={<SignUp />} /> */}
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/about" element={<AboutPage />} />
 
           {/*  Admin protected route */}

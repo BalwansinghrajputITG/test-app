@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
 import TimerFunc from "../Components/TimeFun";
-
 import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+//import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Testpage = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -11,6 +11,24 @@ const Testpage = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const elementRef = useRef(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  useEffect(() => {
+    if (elementRef.current && !document.fullscreenElement) {
+      elementRef.current
+        .requestFullscreen()
+        .then(() => {
+          setIsFullScreen(true);
+        })
+        .catch((err) => {
+          console.error(
+            `Error attempting to enable fullscreen: ${err.message}`
+          );
+        });
+    }
+  });
 
   useEffect(() => {
     setShowPopup(true);
@@ -57,9 +75,9 @@ const Testpage = () => {
 
   // ✅ Submit all selected answers at once
   const handleSubmit = async () => {
-    const user = JSON.stringify(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
     const userEmail = user.email;
-    console.log(userEmail)
+    console.log(userEmail);
     try {
       // Convert selectedAnswers object → array of objects
       const formattedAnswers = Object.entries(selectedAnswers).map(
@@ -91,11 +109,14 @@ const Testpage = () => {
   const currentQuestion = Questions[currentIndex];
 
   return (
-    <div className="test-wrapper bg-[#2a1e55] w-full min-h-screen p-4">
+    <div
+      className="test-wrapper bg-[#2a1e55] w-full min-h-screen p-4"
+      ref={elementRef}
+    >
       {/* If you have popup component, uncomment below line */}
       {/* {showPopup && <PopUp onStart={handleStart} />} */}
 
-      <TimerFunc />
+      <TimerFunc onTimeUp={handleSubmit} />
 
       <div className="test-box max-w-4xl mx-auto bg-[#3a2e6a] p-6 rounded-2xl shadow-lg">
         <div className="box-heading mb-6">
