@@ -4,11 +4,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
 import { useMyFunctions } from "./AuthContext";
+import { useAdminFunctions } from "../provider/AdminProvider";
 
 const Header = () => {
   const navigate = useNavigate();
   const { isAuth, setIsAuth } = useMyFunctions();
   const [userNameFristLater, setUserNameFristLater] = useState("u");
+  const { role } = useAdminFunctions();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")) || false;
@@ -59,15 +61,17 @@ const Header = () => {
           </div>
           <div className="header-navs flex gap-10">
             <nav className="navs flex gap-10 text-[18px] font-bold uppercase  self-center text-white ">
-              <NavLink className={"navs-link"} to="/">
+              <Link className={"navs-link"} to="/">
                 Home
-              </NavLink>
-              <NavLink className={"navs-link"} to="/about">
+              </Link>
+              <Link className={"navs-link"} to="/about">
                 About
-              </NavLink>
-              {/* <NavLink className={"navs-link"} to="/history">
-                History
-              </NavLink> */}
+              </Link>
+              {role === "admin" && isAuth && (
+                <Link className={"navs-link"} to="/admin/dasbord">
+                  Admin
+                </Link>
+              )}
             </nav>
             <div className="login-btn self-center">
               {isAuth ? (
