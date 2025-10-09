@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../Components/Header'
 import Background from '../components/Background'
 import SelectCard from '../components/SelectCard'
 
