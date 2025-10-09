@@ -51,7 +51,7 @@ const Header = () => {
               <div className="image rounded-4xl">
                 <img
                   className="rounded-4xl w-21 h-full"
-                  src="./public/images/logo.png"
+                  src="/images/logo.png"
                 />
               </div>
               <h1 className="text-white text-4xl font-bold font-stretch-50% self-center">
