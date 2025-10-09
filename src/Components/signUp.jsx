@@ -224,9 +224,9 @@ export default function SignUp() {
               errors.userClass ? "border-red-500 bg-red-100 text-red-900" : ""
             }`}
           >
-            <option value="class">Select Class</option>
+            <option className="text-black" value="class">Select Class</option>
             {[...Array(12)].map((_, i) => (
-              <option key={i + 1} value={i + 1}>
+              <option className={`text-black`}   key={i + 1} value={i + 1}>
                 Class-{i + 1}
               </option>
             ))}
