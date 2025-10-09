@@ -9,6 +9,7 @@ import SignUp from "./Components/SignUp";
 import { MyContextProvider } from "./components/AuthContext";
 import AboutPage from "./pages/About";
 import NotFound from "./Components/NotFound";
+import AdminDasbord from "./pages/AdminDasbord";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/sigup" element={<SignUp />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="/admin/dasbord" element={<AdminDasbord />}></Route>
           <Route element={<ProtectedRoutes />}>
             <Route path="/test" element={<Testpage />}></Route>
             <Route path="/dashboard" element={<Dashboard />}></Route>

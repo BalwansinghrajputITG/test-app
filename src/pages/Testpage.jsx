@@ -57,9 +57,9 @@ const Testpage = () => {
 
   // ✅ Submit all selected answers at once
   const handleSubmit = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.stringify(localStorage.getItem("user"));
     const userEmail = user.email;
-    console.log(userEmail);
+    console.log(userEmail)
     try {
       // Convert selectedAnswers object → array of objects
       const formattedAnswers = Object.entries(selectedAnswers).map(
@@ -95,7 +95,7 @@ const Testpage = () => {
       {/* If you have popup component, uncomment below line */}
       {/* {showPopup && <PopUp onStart={handleStart} />} */}
 
-      <TimerFunc onTimeUp={handleSubmit}/>
+      <TimerFunc />
 
       <div className="test-box max-w-4xl mx-auto bg-[#3a2e6a] p-6 rounded-2xl shadow-lg">
         <div className="box-heading mb-6">

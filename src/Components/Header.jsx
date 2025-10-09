@@ -40,8 +40,6 @@ const Header = () => {
     }
   };
 
-  console.log("isAuth", isAuth);
-
   return (
     <div className="header-wrapper fixed w-full ">
       <div className="page-width">
@@ -89,9 +87,12 @@ const Header = () => {
               )}
             </div>
             <div className="profile">
-              <div className="user-box uppercase font-bold text-2xl border-1 cursor-pointer bg-purple-400 text-white">
+              <Link
+                to={isAuth ? "/dashboard" : "/login"}
+                className="user-box uppercase font-bold text-2xl border-1 cursor-pointer bg-purple-400 text-white"
+              >
                 {userNameFristLater}
-              </div>
+              </Link>
             </div>
           </div>
         </div>

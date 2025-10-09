@@ -55,10 +55,17 @@ function Login() {
         localStorage.setItem("token", data.userData.token);
         localStorage.setItem("user", JSON.stringify(data.userData));
         const token = localStorage.getItem("token");
+        console.log(data.userData);
+        const role = data.userData.role;
         if (token) {
           setIsAuth(token);
-          console.log("home");
-          navigate("/");
+          console.log(role);
+          if (role == "admin") {
+            console.log("aidmn check");
+            navigate("/admin/dasbord");
+          } else {
+            navigate("/");
+          }
         }
       }
     }
