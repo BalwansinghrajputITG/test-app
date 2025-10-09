@@ -1,5 +1,6 @@
-import React,{useState , useEffect} from 'react' 
-function TimerFunc() {
+import React, { useState, useEffect } from "react";
+
+function TimerFunc({ onTimeUp }) {
   const [count, setCount] = useState("30:00");
 
   useEffect(() => {
@@ -9,8 +10,14 @@ function TimerFunc() {
       if (seconds === 0) {
         if (minutes === 0) {
           clearInterval(interval);
+
+          if (onTimeUp) {
+            onTimeUp();
+          }
+
           return;
         }
+
         minutes -= 1;
         seconds = 59;
       } else {
@@ -24,11 +31,14 @@ function TimerFunc() {
     }, 1000);
 
     return () => clearInterval(interval); // cleanup on unmount
-  }, []); // run once on mount
+  }, [count, onTimeUp]); // run once on mount
 
   return (
     <div>
-      <p className='text-2xl font-bold text-white text-center mb-5' > Time left :- {count}</p>
+      <p className="text-2xl font-bold text-white text-center mb-5">
+        {" "}
+        Time left :- {count}
+      </p>
     </div>
   );
 }

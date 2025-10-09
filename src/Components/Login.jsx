@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { login } from "../servics/api";
+import { Link, useNavigate } from "react-router-dom";
+import { useMyFunctions } from "./AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
+  const { isAuth, setIsAuth } = useMyFunctions();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token") || null;
+
+    if (token) {
+      navigate("/");
+    }
+  });
 
   function validEmail(email) {
     const re =
@@ -21,7 +35,7 @@ function Login() {
     return hasLower && hasUpper && hasNumber;
   }
 
-  function onSubmitForm(e) {
+  async function onSubmitForm(e) {
     e.preventDefault();
     const newErrors = { email: "", password: "" };
 
@@ -35,11 +49,18 @@ function Login() {
 
     setErrors(newErrors);
 
-    
     if (!newErrors.email && !newErrors.password) {
-      console.log("Login successful!");
-      console.log("Email:", email);
-      console.log("Password:", password);
+      const data = await login(email, password);
+      if (data) {
+        localStorage.setItem("token", data.userData.token);
+        localStorage.setItem("user", JSON.stringify(data.userData));
+        const token = localStorage.getItem("token");
+        if (token) {
+          setIsAuth(token);
+          console.log("home");
+          navigate("/");
+        }
+      }
     }
   }
 
@@ -110,6 +131,11 @@ function Login() {
         >
           Log In
         </button>
+
+        <Link to="/sigup">
+          Your hane don't ac Please{" "}
+          <span className="text-red-500 capitalize font-bold">Signup</span>{" "}
+        </Link>
       </form>
     </div>
   );
