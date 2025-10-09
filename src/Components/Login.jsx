@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { login } from "../servics/api";
 import { Link, useNavigate } from "react-router-dom";
-import { useMyFunctions } from "./Context";
+import { useMyFunctions } from "./AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -11,6 +11,14 @@ function Login() {
   const navigate = useNavigate();
 
   const { isAuth, setIsAuth } = useMyFunctions();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token") || null;
+
+    if (token) {
+      navigate("/");
+    }
+  });
 
   function validEmail(email) {
     const re =

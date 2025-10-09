@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { singup } from "../servics/api";
-import { useMyFunctions } from "./Context";
+import { useMyFunctions } from "./AuthContext";
 
 export default function SignUp() {
   const [data, setData] = useState({
@@ -23,7 +23,15 @@ export default function SignUp() {
   const navigate = useNavigate();
   const { isAuth, setIsAuth } = useMyFunctions();
 
-  // ✅ Validations
+  useEffect(() => {
+    const token = localStorage.getItem("token") || null;
+
+    if (token) {
+      navigate("/");
+    }
+  });
+
+  //  Validations
 
   function validEmail(email) {
     const re =
@@ -45,7 +53,7 @@ export default function SignUp() {
     return /^[0-9]{10}$/.test(phone.trim());
   }
 
-  // ✅ Handle input changes
+  //  Handle input changes
   const handleChanges = (e) => {
     const { name, value } = e.target;
     setData((pre) => ({
@@ -61,7 +69,7 @@ export default function SignUp() {
     }));
   };
 
-  // ✅ Submit validation
+  //  Submit validation
   const submitHandle = async (e) => {
     e.preventDefault();
     const newErrors = {
@@ -94,10 +102,9 @@ export default function SignUp() {
     // Proceed only if no errors
     const isValid = Object.values(newErrors).every((v) => v === "");
     if (isValid) {
-      console.log("✅ Form submitted successfully:", data);
       const userData = await singup(data);
       localStorage.setItem("token", userData.userData.token);
-      localStorage.setItem("user", SON.stringify(userData.userData));
+      localStorage.setItem("user", JSON.stringify(userData.userData));
       const token = localStorage.getItem("token");
       if (token !== "") {
         setIsAuth(token);

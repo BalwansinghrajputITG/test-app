@@ -1,4 +1,4 @@
-import React,{useState , useEffect} from 'react' 
+import React, { useState, useEffect } from "react";
 function TimerFunc() {
   const [count, setCount] = useState("30:00");
 
@@ -28,7 +28,10 @@ function TimerFunc() {
 
   return (
     <div>
-      <p className='text-2xl font-bold text-white text-center mb-5' > Time left :- {count}</p>
+      <p className="text-2xl font-bold text-white text-center mb-5">
+        {" "}
+        Time left :- {count}
+      </p>
     </div>
   );
 }

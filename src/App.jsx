@@ -1,17 +1,14 @@
 import Header from "./components/Header";
-
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Testpage from "./pages/Testpage";
-
-// import SignUp from "./Components/Signup";
 import Login from "./Components/Login";
-import { useState } from "react";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Dashboard from "./pages/Dashboard";
 import SignUp from "./Components/Signup";
-import { useEffect } from "react";
-import { MyContextProvider } from "./components/Context";
+
+import { MyContextProvider } from "./Components/AuthContext";
+
 
 const App = () => {
   return (

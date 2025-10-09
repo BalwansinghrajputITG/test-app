@@ -4,11 +4,15 @@ import { useEffect } from "react";
 
 const Dashboard = () => {
   const [data, setData] = useState({});
+  const [score, setScore] = useState([]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")) || {};
     setData(user);
+    setScore(user.scoreHistory);
   }, []);
+
+  console.log(data.scoreHistory);
 
   return (
     <div className="test-wrapper bg-[#2a1e55] w-full min-h-screen">
@@ -28,7 +32,14 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="scores">
-            <div className="heading font-bold text-2xl text-white">Scores</div>
+            {score.map((s, index) => {
+              return (
+                <div className="heading font-bold text-2xl text-white">
+                  Scores :{s.score}
+                </div>
+              );
+            })}
+
             <div className="scores-content"></div>
           </div>
         </div>

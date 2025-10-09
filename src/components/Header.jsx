@@ -1,8 +1,9 @@
 import axios from "axios";
 
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useMyFunctions } from "./Context";
+
 import React, { useEffect, useState } from "react";
+import { useMyFunctions } from "./AuthContext";
 
 const Header = () => {
   const navigate = useNavigate();
