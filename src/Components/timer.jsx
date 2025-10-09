@@ -1,5 +1,5 @@
 import React,{useState , useEffect} from 'react' 
-function timerFunc() {
+function TimerFunc() {
   const [count, setCount] = useState("30:00");
 
   useEffect(() => {
@@ -28,8 +28,8 @@ function timerFunc() {
 
   return (
     <div>
-      <p>{count}</p>
+      <p className='text-2xl font-bold text-white text-center mb-5' > Time left :- {count}</p>
     </div>
   );
 }
-export default timerFunc;
+export default TimerFunc;
