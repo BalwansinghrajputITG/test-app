@@ -57,8 +57,9 @@ const Testpage = () => {
 
   // ✅ Submit all selected answers at once
   const handleSubmit = async () => {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user"));
     const userEmail = user.email;
+    console.log(userEmail);
     try {
       // Convert selectedAnswers object → array of objects
       const formattedAnswers = Object.entries(selectedAnswers).map(

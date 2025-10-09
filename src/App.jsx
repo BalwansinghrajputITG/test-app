@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import SignUp from "./Components/SignUp";
 import { MyContextProvider } from "./components/AuthContext";
 import AboutPage from "./pages/About";
-
+import NotFound from "./Components/NotFound";
 
 const App = () => {
   return (
@@ -24,6 +24,8 @@ const App = () => {
             <Route path="/test" element={<Testpage />}></Route>
             <Route path="/dashboard" element={<Dashboard />}></Route>
           </Route>
+
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
     </MyContextProvider>
