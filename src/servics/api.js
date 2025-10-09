@@ -24,6 +24,6 @@ export const login = async (email, password) => {
     const data = res.data;
     return data;
   } catch (error) {
-    console.log("axiox error login", error.response.data);
+    console.log("axiox error login", error);
   }
 };
