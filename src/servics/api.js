@@ -27,3 +27,18 @@ export const login = async (email, password) => {
     console.log("axiox error login", error);
   }
 };
+
+export const dashboard = async (email) => {
+  try {
+    const res = await axios.post(
+      "http://localhost:3000/api/auth/user/dashboard",
+      {
+        email: email,
+      }
+    );
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log("axiox error dashboard", error.response.data);
+  }
+};

@@ -5,8 +5,7 @@ import Testpage from "./pages/Testpage";
 import Login from "./components/Login";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Dashboard from "./pages/Dashboard";
-import SignUp from "./Components/Signup";
-
+import SignUp from "./Components/SignUp";
 import { MyContextProvider } from "./components/AuthContext";
 import AboutPage from "./pages/About";
 

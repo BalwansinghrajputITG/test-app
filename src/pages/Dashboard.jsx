@@ -1,22 +1,27 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { dashboard } from "../servics/api";
 
 const Dashboard = () => {
   const [data, setData] = useState({});
   const [score, setScore] = useState([]);
 
-  useEffect(() => {
+  const getDashboard = async () => {
     const user = JSON.parse(localStorage.getItem("user")) || {};
-    setData(user);
-    setScore(user.scoreHistory);
-  }, []);
+    const userData = await dashboard(user.email);
+    console.log(userData.userData);
+    setData(userData.userData);
+    setScore(userData.userData.scoreHistory);
+  };
 
-  console.log(data.scoreHistory);
+  useEffect(() => {
+    getDashboard();
+  }, []);
 
   return (
     <div className="test-wrapper bg-[#2a1e55] w-full min-h-screen">
-      <div className="dashboard border-1 border-white h-screen rounded-3xl ">
+      <div className="dashboard border-1 border-white min-h-screen rounded-3xl ">
         <div className="box-heading">
           <h2 className="text-4xl text-center font-bold text-white">
             Dashboard

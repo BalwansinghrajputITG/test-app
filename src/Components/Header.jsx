@@ -67,9 +67,9 @@ const Header = () => {
               <NavLink className={"navs-link"} to="/about">
                 About
               </NavLink>
-              <NavLink className={"navs-link"} to="/history">
+              {/* <NavLink className={"navs-link"} to="/history">
                 History
-              </NavLink>
+              </NavLink> */}
             </nav>
             <div className="login-btn self-center">
               {isAuth ? (
