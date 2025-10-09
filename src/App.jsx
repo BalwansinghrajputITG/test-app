@@ -6,8 +6,9 @@ import Login from "./Components/Login";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Dashboard from "./pages/Dashboard";
 import SignUp from "./Components/Signup";
+import { MyContextProvider } from "./components/AuthContext";
 
-import { MyContextProvider } from "./Components/AuthContext";
+
 
 
 const App = () => {

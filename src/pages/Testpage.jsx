@@ -4,8 +4,6 @@ import TimerFunc from "../Components/TimeFun";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Testpage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [Questions, setQuestions] = useState([]);
@@ -13,12 +11,11 @@ const Testpage = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     setShowPopup(true);
   }, []);
 
- 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
@@ -60,6 +57,8 @@ const Testpage = () => {
 
   // ✅ Submit all selected answers at once
   const handleSubmit = async () => {
+    const user = localStorage.getItem("user");
+    const userEmail = user.email;
     try {
       // Convert selectedAnswers object → array of objects
       const formattedAnswers = Object.entries(selectedAnswers).map(
