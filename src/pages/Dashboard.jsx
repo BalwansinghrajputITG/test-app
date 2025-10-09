@@ -19,6 +19,8 @@ const Dashboard = () => {
     getDashboard();
   }, []);
 
+  console.log("user data", data);
+
   return (
     <div className="test-wrapper bg-[#2a1e55] w-full min-h-screen">
       <div className="dashboard border-1 border-white min-h-screen rounded-3xl ">
@@ -37,10 +39,19 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="scores">
+            <div className="heading grid grid-cols-4 font-bold text-2xl text-white">
+              <p>Date</p>
+              <p>Score</p>
+              <p>CorrectAnswers</p>
+              <p>Attempt</p>
+            </div>
             {score.map((s, index) => {
               return (
-                <div className="heading font-bold text-2xl text-white">
-                  Scores :{s.score}
+                <div className="heading grid grid-cols-4 font-semibold text-2xl text-gray-300">
+                  <p>{s.submitedON.substring(0, 10)}</p>
+                  <p>{s.score}</p>
+                  <p>{s.questionAttempt.correctAnswers}</p>
+                  <p>{s.questionAttempt.attempt}</p>
                 </div>
               );
             })}
