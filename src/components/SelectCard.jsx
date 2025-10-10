@@ -20,7 +20,7 @@ const SelectCard = () => {
             </div>
           </div>
         </Link>
-        <Link to={"/dashboard"} >
+        <Link to={"/dashboard"}>
           <div className="card w-90 h-80 rounded-3xl relative">
             <div className="bg-image w-full h-80 ">
               <img
