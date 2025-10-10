@@ -10,7 +10,7 @@ const SelectCard = () => {
             <div className="bg-image w-full h-full rounded-3xl">
               <img
                 className="rounded-3xl w-full h-full"
-                src="./public/images/5690878.jpg"
+                src="/images/5690878.jpg"
               />
             </div>
             <div className="content bg-white rounded-3xl absolute w-full bottom-0">
@@ -36,7 +36,6 @@ const SelectCard = () => {
           </div>
         </Link>
       </div>
-     
     </div>
   );
 };

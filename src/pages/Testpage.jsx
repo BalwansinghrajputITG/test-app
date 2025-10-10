@@ -1,8 +1,8 @@
-import TimerFunc from "../Components/TimeFun"
+import TimerFunc from "../Components/TimeFun";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
+//import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Testpage = () => {
   const [showPopup, setShowPopup] = useState(false);

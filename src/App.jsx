@@ -1,36 +1,47 @@
-import Header from "./components/Header";
+import Header from "./Components/Header";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Testpage from "./pages/Testpage";
-import Login from "./components/Login";
+import Login from "./Components/Login";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Dashboard from "./pages/Dashboard";
 import SignUp from "./Components/SignUpPage";
 import { MyContextProvider } from "./components/AuthContext";
 import AboutPage from "./pages/About";
 import NotFound from "./Components/NotFound";
-import AdminPage from "./pages/AdminPage";
+import AdminDasbord from "./pages/AdminDasbord";
+import SignUp from "./Components/Signup";
+import { AdminContextProvider } from "./provider/AdminProvider";
+import PrivateRouter from "./Components/PrivateRouter";
+import Alert from "./Components/Alert";
 
 const App = () => {
   return (
-    <MyContextProvider>
-      <div>
+    <AdminContextProvider>
+      <MyContextProvider>
         <Header />
+
         <Routes>
-          <Route index element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/sigup" element={<SignUp />}></Route>
-          <Route path="/about" element={<AboutPage />}></Route>
-          <Route path="/admin" element={<AdminPage />}></Route>
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/test" element={<Testpage />}></Route>
-            <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/about" element={<AboutPage />} />
+
+          {/*  Admin protected route */}
+          <Route element={<PrivateRouter />}>
+            <Route path="/admin/dasbord" element={<AdminDasbord />} />
           </Route>
 
-          <Route path="*" element={<NotFound />}></Route>
+          {/* Normal protected routes */}
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/test" element={<Testpage />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
-    </MyContextProvider>
+      </MyContextProvider>
+    </AdminContextProvider>
   );
 };
 

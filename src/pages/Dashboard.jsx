@@ -6,11 +6,11 @@ import { dashboard } from "../servics/api";
 const Dashboard = () => {
   const [data, setData] = useState({});
   const [score, setScore] = useState([]);
+  const [roll, setRoll] = useState("user");
 
   const getDashboard = async () => {
     const user = JSON.parse(localStorage.getItem("user")) || {};
     const userData = await dashboard(user.email);
-    console.log(userData.userData);
     setData(userData.userData);
     setScore(userData.userData.scoreHistory);
   };
