@@ -12,23 +12,53 @@ const Testpage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const [tabHiddenCount, setTabHiddenCount] = useState(0);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setTabHiddenCount(prevCount => prevCount + 1);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  const [escapePressed, setEscapePressed] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' || event.keyCode === 27) {
+        setEscapePressed(true);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+
   const elementRef = useRef(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   useEffect(() => {
     if (elementRef.current && !document.fullscreenElement) {
-      elementRef.current
-        .requestFullscreen()
-        .then(() => {
-          setIsFullScreen(true);
-        })
-        .catch((err) => {
-          console.error(
-            `Error attempting to enable fullscreen: ${err.message}`
-          );
-        });
+      elementRef.current.requestFullscreen().then(() => {
+        setIsFullScreen(true);
+      }).catch(err => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+    }else{
+      setEscapePressed(true);
     }
-  });
+  })
 
   useEffect(() => {
     setShowPopup(true);
@@ -109,14 +139,15 @@ const Testpage = () => {
   const currentQuestion = Questions[currentIndex];
 
   return (
-    <div
-      className="test-wrapper bg-[#2a1e55] w-full min-h-screen p-4"
-      ref={elementRef}
-    >
+    <div className="test-wrapper bg-[#2a1e55] w-full min-h-screen p-4" ref={elementRef}>
       {/* If you have popup component, uncomment below line */}
       {/* {showPopup && <PopUp onStart={handleStart} />} */}
 
       <TimerFunc onTimeUp={handleSubmit} />
+      <div className="flex mb-5 gap-5 justify-center" >
+        <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">Tab Change :-{tabHiddenCount}</p>
+        <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">Exit Screen: {escapePressed? "yes" : "no"}</p>
+      </div>
 
       <div className="test-box max-w-4xl mx-auto bg-[#3a2e6a] p-6 rounded-2xl shadow-lg">
         <div className="box-heading mb-6">
@@ -196,7 +227,7 @@ const Testpage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Testpage;

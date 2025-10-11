@@ -5,14 +5,14 @@ import Testpage from "./pages/Testpage";
 import Login from "./Components/Login";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Dashboard from "./pages/Dashboard";
-import { MyContextProvider } from "./Components/AuthContext";
+import SignUp from "./Components/SignUpPage";
+
 import AboutPage from "./pages/About";
 import NotFound from "./Components/NotFound";
 import AdminDasbord from "./pages/AdminDasbord";
-import SignUp from "./Components/Signup";
 import { AdminContextProvider } from "./provider/AdminProvider";
 import PrivateRouter from "./Components/PrivateRouter";
-import Alert from "./Components/Alert";
+import { MyContextProvider } from "./Components/AuthContext";
 
 const App = () => {
   return (
