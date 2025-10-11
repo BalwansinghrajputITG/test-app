@@ -23,6 +23,7 @@ import Navbar from "./Components/Navbar";
 
 
 
+import AdminPage from "./pages/AdminPage";
 
 const App = () => {
   return (
