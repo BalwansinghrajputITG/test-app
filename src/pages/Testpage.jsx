@@ -1,4 +1,3 @@
-
 import TimerFunc from "../Components/TimeFun";
 
 import axios from "axios";
@@ -177,6 +176,7 @@ const Testpage = () => {
     </div>
   );
 };
+
 
 export default Testpage;
 

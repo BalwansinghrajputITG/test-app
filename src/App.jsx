@@ -10,6 +10,7 @@ import { MyContextProvider } from "./components/AuthContext";
 import AboutPage from "./pages/About";
 import NotFound from "./Components/NotFound";
 import AdminPage from "./pages/AdminPage";
+import SuperAlert from "./Components/alert";
 
 const App = () => {
   return (
@@ -29,8 +30,10 @@ const App = () => {
 
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
+        <SuperAlert message='Your alert' bgColor="white" textColor="black"/>
       </div>
     </MyContextProvider>
+    
   );
 };
 
