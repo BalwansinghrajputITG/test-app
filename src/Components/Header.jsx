@@ -5,7 +5,7 @@ import { useAdminFunctions } from "../provider/AdminProvider";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isAuth, setIsAuth, userName, setUserNameFristLater } =
+  const { isAuth, setIsAuth, userName } =
     useMyFunctions();
   const { role } = useAdminFunctions();
   const handleLogOut = async () => {
