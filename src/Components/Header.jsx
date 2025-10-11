@@ -1,25 +1,13 @@
 import axios from "axios";
-
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
-import React, { useEffect, useState } from "react";
 import { useMyFunctions } from "./AuthContext";
+import { useAdminFunctions } from "../provider/AdminProvider";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isAuth, setIsAuth } = useMyFunctions();
-  const [userNameFristLater, setUserNameFristLater] = useState("u");
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user")) || false;
-    if (user) {
-      const fristLater = user.fullName[0];
-      setUserNameFristLater(fristLater);
-    } else {
-      setUserNameFristLater("U");
-    }
-  }, [isAuth]);
-
+  const { isAuth, setIsAuth, userName, setUserNameFristLater } =
+    useMyFunctions();
+  const { role } = useAdminFunctions();
   const handleLogOut = async () => {
     try {
       const res = await axios.post(
@@ -40,36 +28,36 @@ const Header = () => {
     }
   };
 
-  console.log("isAuth", isAuth);
-
   return (
     <div className="header-wrapper fixed w-full ">
       <div className="page-width">
         <div className="header-grid flex justify-between">
           <div className="header-logo">
-            <div className="logo cursor-pointer flex gap-2">
+            <Link to="/" className="logo cursor-pointer flex gap-2">
               <div className="image rounded-4xl">
                 <img
                   className="rounded-4xl w-21 h-full"
-                  src="./public/images/logo.png"
+                  src="/images/logo.png"
                 />
               </div>
               <h1 className="text-white text-4xl font-bold font-stretch-50% self-center">
                 QuizGecko
               </h1>
-            </div>
+            </Link>
           </div>
           <div className="header-navs flex gap-10">
             <nav className="navs flex gap-10 text-[18px] font-bold uppercase  self-center text-white ">
-              <NavLink className={"navs-link"} to="/">
+              <Link className={"navs-link"} to="/">
                 Home
-              </NavLink>
-              <NavLink className={"navs-link"} to="/about">
+              </Link>
+              <Link className={"navs-link"} to="/about">
                 About
-              </NavLink>
-              {/* <NavLink className={"navs-link"} to="/history">
-                History
-              </NavLink> */}
+              </Link>
+              {role === "admin" && isAuth && (
+                <Link className={"navs-link"} to="/admin/dasbord">
+                  Admin
+                </Link>
+              )}
             </nav>
             <div className="login-btn self-center">
               {isAuth ? (
@@ -89,9 +77,18 @@ const Header = () => {
               )}
             </div>
             <div className="profile">
-              <div className="user-box uppercase font-bold text-2xl border-1 cursor-pointer bg-purple-400 text-white">
-                {userNameFristLater}
-              </div>
+              <Link
+                to={
+                  isAuth
+                    ? role == "admin"
+                      ? "/admin/dasbord"
+                      : "/dashboard"
+                    : "/login"
+                }
+                className="user-box uppercase font-bold text-2xl border-1 cursor-pointer bg-purple-400 text-white"
+              >
+                {userName[0]}
+              </Link>
             </div>
           </div>
         </div>

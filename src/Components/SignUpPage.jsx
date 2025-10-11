@@ -106,8 +106,12 @@ export default function SignUp() {
       localStorage.setItem("token", userData.userData.token);
       localStorage.setItem("user", JSON.stringify(userData.userData));
       const token = localStorage.getItem("token");
+      const role = userData.userData.role;
       if (token !== "") {
         setIsAuth(token);
+        if (role == "admin") {
+          return navigate("/admin/dasbord");
+        }
         navigate("/");
       }
     }
@@ -224,9 +228,11 @@ export default function SignUp() {
               errors.userClass ? "border-red-500 bg-red-100 text-red-900" : ""
             }`}
           >
-            <option className="text-black" value="class">Select Class</option>
+            <option className="text-black" value="class">
+              Select Class
+            </option>
             {[...Array(12)].map((_, i) => (
-              <option className={`text-black`}   key={i + 1} value={i + 1}>
+              <option className={`text-black`} key={i + 1} value={i + 1}>
                 Class-{i + 1}
               </option>
             ))}
