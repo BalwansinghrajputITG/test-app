@@ -1,4 +1,3 @@
-import Header from "./Components/Header";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Testpage from "./pages/Testpage";
@@ -13,14 +12,26 @@ import AdminDasbord from "./pages/AdminDasbord";
 import { AdminContextProvider } from "./provider/AdminProvider";
 import PrivateRouter from "./Components/PrivateRouter";
 import { MyContextProvider } from "./Components/AuthContext";
-import Alert from "./Components/alert";
+import Alert from "./Components/Alert";
  
+
+import AddPeople from "./Components/addentitys";
+
+
+import { MyContextProvider } from "./provider/MyAuthProvider";
+import Navbar from "./Components/Navbar";
+
+
+
+
 const App = () => {
   return (
     <AdminContextProvider>
       <MyContextProvider>
         <Header />
  
+        <Navbar />
+
         <Routes>
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -30,6 +41,7 @@ const App = () => {
           {/*  Admin protected route */}
           <Route element={<PrivateRouter />}>
             <Route path="/admin/dasbord" element={<AdminDasbord />} />
+            <Route path="/admin/dasbord/addentitys" element={<AddPeople/>} />
           </Route>
  
           {/* Normal protected routes */}

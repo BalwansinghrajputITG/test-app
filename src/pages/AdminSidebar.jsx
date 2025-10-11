@@ -1,9 +1,11 @@
 import React from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
-import { useMyFunctions } from "../Components/AuthContext";
+import { useMyFunctions } from "../provider/MyAuthProvider";
+import { useTranslation } from "react-i18next";
 
 function AdminSidebar() {
-  const { activeTab, setActiveTab, users } = useAdminFunctions();
+  const { t } = useTranslation();
+  const { activeTab, setActiveTab } = useAdminFunctions();
   const { userName } = useMyFunctions();
   return (
     <aside className="h-full w-64 bg-[#241a42] p-4">
@@ -19,26 +21,30 @@ function AdminSidebar() {
         <button
           onClick={() => setActiveTab("add-question")}
           className={`${
-            activeTab == "add-question" ? "bg-purple-700" : ""
-          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer`}
+            activeTab == "add-question"
+              ? "bg-purple-700"
+              : activeTab == "all-questions"
+              ? "bg-purple-700"
+              : ""
+          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
-          Add Questions
+          {t("Question")}
         </button>
         <button
           onClick={() => setActiveTab("manage-users")}
           className={`${
             activeTab == "manage-users" ? "bg-purple-700" : ""
-          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer`}
+          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
-          Manage Users
+          {t("Manage Users")}
         </button>
         <button
           onClick={() => setActiveTab("settings")}
           className={`${
             activeTab == "settings" ? "bg-purple-700" : ""
-          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer`}
+          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
-          Settings
+          {t("Settings")}
         </button>
       </div>
     </aside>

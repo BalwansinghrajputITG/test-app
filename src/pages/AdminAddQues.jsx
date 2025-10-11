@@ -1,67 +1,55 @@
 import React from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import { TabButtons } from "./TabButtons";
+import { QuestionsList } from "./Questionlist";
+import { AddQuestionForm } from "./AddQuestionForm";
 
-function AdminAddQues() {
+export default function AdminAddQues() {
   const {
-    handleOptionChange,
-    handleAddQuestion,
     activeTab,
+    setActiveTab,
     question,
     setQuestion,
     options,
+    setOptions,
     correctOption,
     setCorrectOption,
+    handleOptionChange,
+    example,
+    questions,
+    delete_question,
+    fetchAllQuestionForDelete,
   } = useAdminFunctions();
 
   return (
-    <>
-      {activeTab === "add-question" && (
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Add New Question</h2>
-          <form onSubmit={handleAddQuestion} className="space-y-4">
-            <div>
-              <label>Question:</label>
-              <br />
-              <textarea
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                rows={3}
-                className="w-full p-2 text-white border-2 border-black rounded-2xl outline-none"
-              />
-            </div>
-            {options.map((opt, index) => (
-              <div key={index}>
-                <label>Option {index + 1}:</label>
-                <input
-                  type="text"
-                  value={opt}
-                  onChange={(e) => handleOptionChange(index, e.target.value)}
-                  className="w-full p-2 text-white border-2 border-black rounded-2xl outline-none "
-                />
-              </div>
-            ))}
-            <div>
-              <label>Correct Option (1-4):</label>
-              <input
-                type="number"
-                value={correctOption}
-                onChange={(e) => setCorrectOption(parseInt(e.target.value))}
-                className="w-full p-2 text-white border-2 border-black rounded-2xl outline-none "
-                min={1}
-                max={4}
-              />
-            </div>
-            <button
-              type="submit"
-              className="bg-purple-600 px-4 py-2 rounded hover:bg-purple-800"
-            >
-              Submit Question
-            </button>
-          </form>
-        </div>
+    <div>
+      {(activeTab === "add-question" || activeTab === "all-questions") && (
+        <TabButtons
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          fetchAllQuestionForDelete={fetchAllQuestionForDelete}
+        />
       )}
-    </>
+
+      {activeTab === "add-question" && (
+        <AddQuestionForm
+          question={question}
+          setQuestion={setQuestion}
+          options={options}
+          setOptions={setOptions}
+          correctOption={correctOption}
+          setCorrectOption={setCorrectOption}
+          handleOptionChange={handleOptionChange}
+          example={example}
+        />
+      )}
+
+      {activeTab === "all-questions" && (
+        <QuestionsList
+          questions={questions}
+          delete_question={delete_question}
+        />
+      )}
+    </div>
   );
 }
-
-export default AdminAddQues;

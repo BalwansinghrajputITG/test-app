@@ -1,24 +1,23 @@
 import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useMyFunctions } from "./AuthContext";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import { useMyFunctions } from "../provider/MyAuthProvider";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-const Header = () => {
+const Navbar = () => {
   const navigate = useNavigate();
-  const { isAuth, setIsAuth, userName, setUserNameFristLater } =
-    useMyFunctions();
+  const { isAuth, setIsAuth, userName } = useMyFunctions();
   const { role } = useAdminFunctions();
   const handleLogOut = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/auth/user/logout"
+        "https://test-app-backend-ly6a.vercel.app/api/auth/user/logout"
       );
       const data = res.data;
       console.log(data);
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       const token = localStorage.getItem("token");
-      console.log(token);
       if (!token) {
         setIsAuth(token);
         navigate("/login");
@@ -29,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <div className="header-wrapper fixed w-full ">
+    <div className="header-wrapper w-full ">
       <div className="page-width">
         <div className="header-grid flex justify-between">
           <div className="header-logo">
@@ -46,18 +45,35 @@ const Header = () => {
             </Link>
           </div>
           <div className="header-navs flex gap-10">
-            <nav className="navs flex gap-10 text-[18px] font-bold uppercase  self-center text-white ">
-              <Link className={"navs-link"} to="/">
+            <nav className=" flex gap-10 text-[18px] font-bold uppercase  self-center text-white ">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "navs-link-active navs" : "navs-link navs"
+                }
+              >
                 Home
-              </Link>
-              <Link className={"navs-link"} to="/about">
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "navs-link-active navs" : "navs-link navs"
+                }
+              >
                 About
-              </Link>
+              </NavLink>
               {role === "admin" && isAuth && (
-                <Link className={"navs-link"} to="/admin/dasbord">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "navs-link-active navs" : "navs-link navs"
+                  }
+                  to="/admin/dasbord"
+                >
                   Admin
-                </Link>
+                </NavLink>
               )}
+
+              <LanguageSwitcher />
             </nav>
             <div className="login-btn self-center">
               {isAuth ? (
@@ -97,4 +113,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

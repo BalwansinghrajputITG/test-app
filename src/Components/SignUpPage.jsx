@@ -4,6 +4,8 @@ import { singup } from "../servics/api";
 import { useMyFunctions } from "./AuthContext";
 import Alert from "./Alert";
 import { useAlert } from "../servics/ApiChanger";
+import { useMyFunctions } from "../provider/MyAuthProvider";
+
 export default function SignUp() {
   const { showAlert } = useAlert();
   const [data, setData] = useState({

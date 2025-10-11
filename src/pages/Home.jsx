@@ -1,14 +1,14 @@
-import React from 'react'
-import Background from '../components/Background'
-import SelectCard from '../components/SelectCard'
+import React from "react";
+import Background from "../Components/Background";
+import SelectCard from "../Components/SelectCard";
 
 const Home = () => {
   return (
-    <div >
+    <div>
       <Background />
       <SelectCard />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

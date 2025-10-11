@@ -65,3 +65,52 @@ export const deleteUserById = async (id) => {
     console.log("axiox error getAllUser", error.response.data.msg);
   }
 };
+
+// Handle adding a new question
+export const handleAddQuestion = (obj) => {
+    console.log("==> end");
+    const QUE_OBJ = {
+        Question: obj.question,
+        Answers: [
+            { Answer: obj.options[0] },
+            { Answer: obj.options[1] },
+            { Answer: obj.options[2] },
+            { Answer: obj.options[3] },
+        ],
+        CorrectAnswerID: obj.correctOption - 1,
+    };
+    const res = axios.post(`${BASE_URL}/question/post/new-question`, QUE_OBJ);
+    console.log(res);
+
+    console.log("Question Submitted:", QUE_OBJ);
+
+};
+
+// Fetch all questions from backend
+
+export const fetchAllQuestions = async() => {
+
+    try {
+        const res = await axios.get(`${BASE_URL}/question/all`); // your GET all questions API
+        return res.data; // assuming data is an array of questions
+    } catch (error) {
+        console.error("Failed to fetch questions:", error);
+    }
+};
+
+export const deleteQuestionById = async(QuestionID) => {
+    try {
+        const res = await axios.post(
+            `${BASE_URL}/question/delete-question`, { QuestionID }, // request body
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        const data = res.data;
+    } catch (error) {
+        console.error("Failed to delete question:", error);
+    }
+};
