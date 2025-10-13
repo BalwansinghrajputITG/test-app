@@ -1,5 +1,4 @@
 /* CustomAlert.css */
-
 .custom-alert {
   position: fixed;
   top: 0;
@@ -12,12 +11,12 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 1000;
+  z-index: 10000;
   opacity: 0;
 }
 
 .custom-alert.show {
-  transform: translate(-50%, 20px); /* drop-down effect */
+  transform: translate(-50%, 20px);
   opacity: 1;
 }
 
@@ -28,6 +27,8 @@
 
 .alert-content p {
   margin: 0 0 10px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .alert-content button {

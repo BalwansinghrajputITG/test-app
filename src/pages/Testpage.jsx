@@ -11,7 +11,7 @@ const Testpage = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+  
   const [tabHiddenCount, setTabHiddenCount] = useState(0);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Testpage = () => {
       }).catch(err => {
         console.error(`Error attempting to enable fullscreen: ${err.message}`);
       });
-    }else{
+    } else {
       setEscapePressed(true);
     }
   })
@@ -146,7 +146,7 @@ const Testpage = () => {
       <TimerFunc onTimeUp={handleSubmit} />
       <div className="flex mb-5 gap-5 justify-center" >
         <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">Tab Change :-{tabHiddenCount}</p>
-        <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">Exit Screen: {escapePressed? "yes" : "no"}</p>
+        <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">Exit Screen: {escapePressed ? "yes" : "no"}</p>
       </div>
 
       <div className="test-box max-w-4xl mx-auto bg-[#3a2e6a] p-6 rounded-2xl shadow-lg">

@@ -1,18 +1,23 @@
 // CustomAlert.jsx
 import React, { useEffect, useState } from 'react';
-import './CustomAlert.css';
+import './Alert.css';
 
 const Alert = ({ message, color = '#ff4d4f', onClose }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger entrance animation
     setVisible(true);
+
+    // Auto-dismiss after 3 seconds
+    const autoCloseTimer = setTimeout(() => {
+      handleClose();
+    }, 3000);
+
+    return () => clearTimeout(autoCloseTimer);
   }, []);
 
   const handleClose = () => {
     setVisible(false);
-    // Wait for animation to finish before removing from DOM
     setTimeout(() => {
       if (onClose) onClose();
     }, 300); // match CSS transition duration

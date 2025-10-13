@@ -13,6 +13,7 @@ import AdminDasbord from "./pages/AdminDasbord";
 import { AdminContextProvider } from "./provider/AdminProvider";
 import PrivateRouter from "./Components/PrivateRouter";
 import { MyContextProvider } from "./Components/AuthContext";
+import Alert from "./Components/alert";
  
 const App = () => {
   return (
@@ -38,10 +39,14 @@ const App = () => {
           </Route>
  
           <Route path="*" element={<NotFound />} />
+
         </Routes>
+        <Alert message={'Welcomes you'} color="#E9D502" onClose={()=>{}}/> 
       </MyContextProvider>
     </AdminContextProvider>
   );
 };
- 
 export default App;
+// red = #CE2029
+// green = #006400
+// yellow = #E9D502

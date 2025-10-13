@@ -1,6 +1,7 @@
 // src/provider/AdminProvider.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { deleteUserById, getAllUser } from "../servics/api";
+import { useAlert } from "../servics/ApiChanger";
 
 const AdminContext = createContext();
 
@@ -66,12 +67,12 @@ export const AdminContextProvider = ({ children }) => {
   // Load current user from localStorage on mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
+    if (storedUser){
       const parsedUser = JSON.parse(storedUser);
       setUser(parsedUser);
       setRole(parsedUser.role);
     }
-  }, []);
+  },[]);
 
   // Fetch all users from API on mount
 
@@ -93,12 +94,14 @@ export const AdminContextProvider = ({ children }) => {
   }, [userType]);
 
   const handleUserDelete = async (otherUserId, adminId) => {
+    const {showAlert } = useAlert();
     if (otherUserId == adminId) {
-      alert("your are not deleted yourshelf");
+      showAlert("your are not deleted yourshelf","#CE2029")
       return;
     }
 
     const data = await deleteUserById(otherUserId);
+    showAlert("user Deletion Successfull","#CE2029")
     console.log(data.msg);
     alert(data.msg);
     fetchUsers();

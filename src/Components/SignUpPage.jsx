@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { singup } from "../servics/api";
 import { useMyFunctions } from "./AuthContext";
-
+import Alert from "./Alert";
+import { useAlert } from "../servics/ApiChanger";
 export default function SignUp() {
+  const { showAlert } = useAlert();
   const [data, setData] = useState({
     fullName: "",
     email: "",
@@ -28,8 +30,9 @@ export default function SignUp() {
 
     if (token) {
       navigate("/");
+      showAlert("HomePage", "#006400");
     }
-  });
+  },[]);
 
   //  Validations
 
@@ -102,7 +105,9 @@ export default function SignUp() {
     // Proceed only if no errors
     const isValid = Object.values(newErrors).every((v) => v === "");
     if (isValid) {
+      showAlert('user SignUP SuccessFull', "#006400");
       const userData = await singup(data);
+   console.log(userData.userData)
       localStorage.setItem("token", userData.userData.token);
       localStorage.setItem("user", JSON.stringify(userData.userData));
       const token = localStorage.getItem("token");
@@ -110,9 +115,12 @@ export default function SignUp() {
       if (token !== "") {
         setIsAuth(token);
         if (role == "admin") {
-          return navigate("/admin/dasbord");
+           showAlert("SignUp Successfull as Admin", "#006400");
+          return navigate("/admin/dasbord");//
         }
+        showAlert("SignUP Successfull", "#006400");
         navigate("/");
+       
       }
     }
   };
@@ -138,9 +146,8 @@ export default function SignUp() {
             onChange={handleChanges}
             id="fullName"
             placeholder="Name Here"
-            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${
-              errors.fullName ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${errors.fullName ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           />
           {errors.fullName && (
             <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
@@ -160,9 +167,8 @@ export default function SignUp() {
             onChange={handleChanges}
             id="email"
             placeholder="E-mail Address"
-            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${
-              errors.email ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${errors.email ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -182,9 +188,8 @@ export default function SignUp() {
             onChange={handleChanges}
             id="phoneNumber"
             placeholder="10-digit phone"
-            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${
-              errors.phoneNumber ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${errors.phoneNumber ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           />
           {errors.phoneNumber && (
             <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>
@@ -204,9 +209,8 @@ export default function SignUp() {
             onChange={handleChanges}
             id="password"
             placeholder="Password Here"
-            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${
-              errors.password ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${errors.password ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           />
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">{errors.password}</p>
@@ -224,9 +228,8 @@ export default function SignUp() {
             onChange={handleClass}
             id="userClass"
             required
-            className={`border-b text-lg outline-none w-full px-2 py-1 rounded-md ${
-              errors.userClass ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none w-full px-2 py-1 rounded-md ${errors.userClass ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           >
             <option className="text-black" value="class">
               Select Class
