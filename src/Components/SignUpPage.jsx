@@ -122,7 +122,6 @@ export default function SignUp() {
         }
         showAlert("SignUP Successfull", "#006400");
         navigate("/");
-       
       }
     }
   };
