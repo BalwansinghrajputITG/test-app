@@ -11,8 +11,12 @@ import AdminDasbord from "./pages/AdminDasbord";
 import { AdminContextProvider } from "./provider/AdminProvider";
 import PrivateRouter from "./Components/PrivateRouter";
 
+import AddPeople from "./Components/addentitys";
+
+
 import { MyContextProvider } from "./provider/MyAuthProvider";
 import Navbar from "./Components/Navbar";
+
 
 
 
@@ -31,6 +35,7 @@ const App = () => {
           {/*  Admin protected route */}
           <Route element={<PrivateRouter />}>
             <Route path="/admin/dasbord" element={<AdminDasbord />} />
+            <Route path="/admin/dasbord/addentitys" element={<AddPeople/>} />
           </Route>
 
           {/* Normal protected routes */}
