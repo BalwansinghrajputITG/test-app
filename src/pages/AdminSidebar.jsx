@@ -1,8 +1,10 @@
 import React from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
 import { useMyFunctions } from "../provider/MyAuthProvider";
+import { useTranslation } from "react-i18next";
 
 function AdminSidebar() {
+  const { t } = useTranslation();
   const { activeTab, setActiveTab } = useAdminFunctions();
   const { userName } = useMyFunctions();
   return (
@@ -22,7 +24,7 @@ function AdminSidebar() {
             activeTab == "add-question" ? "bg-purple-700" : ""
           } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
-          Add Questions
+          {t("Question")}
         </button>
         <button
           onClick={() => setActiveTab("manage-users")}
@@ -30,7 +32,7 @@ function AdminSidebar() {
             activeTab == "manage-users" ? "bg-purple-700" : ""
           } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
-          Manage Users
+          {t("Manage Users")}
         </button>
         <button
           onClick={() => setActiveTab("settings")}
@@ -38,7 +40,7 @@ function AdminSidebar() {
             activeTab == "settings" ? "bg-purple-700" : ""
           } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
-          Settings
+          {t("Settings")}
         </button>
       </div>
     </aside>

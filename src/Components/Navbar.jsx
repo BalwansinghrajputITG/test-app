@@ -2,6 +2,7 @@ import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAdminFunctions } from "../provider/AdminProvider";
 import { useMyFunctions } from "../provider/MyAuthProvider";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -71,6 +72,8 @@ const Navbar = () => {
                   Admin
                 </NavLink>
               )}
+
+              <LanguageSwitcher />
             </nav>
             <div className="login-btn self-center">
               {isAuth ? (
