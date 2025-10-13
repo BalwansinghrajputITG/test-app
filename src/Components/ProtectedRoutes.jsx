@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useMyFunctions } from "./AuthContext";
+import { useMyFunctions } from "../provider/MyAuthProvider";
+
 
 const ProtectedRoutes = () => {
   const { isAuth } = useMyFunctions();

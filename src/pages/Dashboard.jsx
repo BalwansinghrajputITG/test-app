@@ -6,6 +6,7 @@ import { dashboard } from "../servics/api";
 const Dashboard = () => {
   const [data, setData] = useState({});
   const [score, setScore] = useState([]);
+  const [openIndexes, setOpenIndexes] = useState([]);
 
   const getDashboard = async () => {
     const user = JSON.parse(localStorage.getItem("user")) || {};
@@ -17,7 +18,11 @@ const Dashboard = () => {
   useEffect(() => {
     getDashboard();
   }, []);
-
+  const toggleOpen = (index) => {
+    setOpenIndexes((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
   return (
     <div className="test-wrapper bg-[#2a1e55] w-full min-h-screen">
       <div className="dashboard border-1 border-white min-h-screen rounded-3xl ">
@@ -36,13 +41,6 @@ const Dashboard = () => {
                   alt=""
                 />
               </div>
-              <form className="bg-white mt-3 rounded-3xl w-50 p-2 cursor-pointer">
-                <input
-                  className="cursor-pointer"
-                  type="file"
-                  accept="image/jpg, image/jpeg, image/png"
-                />
-              </form>
             </div>
             <div className="details text-2xl font-semibold text-white flex flex-col gap-5 self-center">
               <div className="person-name">Name : {data.fullName}</div>
@@ -51,23 +49,47 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="scores">
-            <div className="heading grid grid-cols-4 font-bold text-2xl text-white">
-              <p>Date</p>
-              <p>Score</p>
-              <p>CorrectAnswers</p>
-              <p>Attempt</p>
+            <div className="heading grid grid-cols-3 font-bold text-2xl text-white">
+              <p className="pl-[50px]  text-left">Title</p>
+              <p className="text-center">Score</p>
+
+              <p className="pr-[50px] text-right">Detail</p>
             </div>
             {score.map((s, index) => {
+              const dateObj = new Date(s.submitedON);
+
+              const date = dateObj.toLocaleDateString();
+              const time = dateObj.toLocaleTimeString();
+              const isOpen = openIndexes.includes(index);
+
               return (
-                <div className="heading grid grid-cols-4 font-semibold text-2xl text-gray-300">
-                  <p>{s.submitedON.substring(0, 10)}</p>
-                  <p>{s.score}</p>
-                  <p>{s.questionAttempt.correctAnswers}</p>
-                  <p>{s.questionAttempt.attempt}</p>
+                <div
+                  key={index}
+                  className={`heading font-bold text-2xl text-white pt-2 pb-2 pr-15 pl-10  m-2 rounded-2xl hover:bg-[#41317a] transition duration-300 score-holder ${
+                    isOpen ? "open" : ""
+                  }`}
+                >
+                  <div className="flex justify-between">
+                    Scores : <span>{s.score}</span>
+                    <span
+                      className="detailScoreOpener"
+                      onClick={() => toggleOpen(index)}
+                    >
+                      •••
+                    </span>
+                  </div>
+                  <br />
+                  <div className="detail-page-score">
+                    Attempt Questions : {s.questionAttempt.attempt} <br />
+                    <hr />
+                    Correct Answers : {s.questionAttempt.correctAnswers} <br />
+                    <hr />
+                    Date and Time: {date} , {time}
+                    <hr />
+                  </div>
                 </div>
               );
             })}
-
             <div className="scores-content"></div>
           </div>
         </div>

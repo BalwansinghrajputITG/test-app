@@ -25,7 +25,7 @@ const SelectCard = () => {
             <div className="bg-image w-full h-80 ">
               <img
                 className="rounded-3xl h-full w-full"
-                src="./public/images/59254.jpg"
+                src="/images/59254.jpg"
               />
             </div>
             <div className="content  bg-white rounded-3xl absolute w-full bottom-0">
