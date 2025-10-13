@@ -1,13 +1,11 @@
 import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAdminFunctions } from "../provider/AdminProvider";
-import { useAlert } from "../servics/ApiChanger";
-
 
 const Navbar = () => {
   const {showAlert} = useAlert();
   const navigate = useNavigate();
-  const {isAuth, setIsAuth, userName, setUserNameFristLater} =
+  const { isAuth, setIsAuth, userName, setUserNameFristLater } =
     useMyFunctions();
   const { role } = useAdminFunctions();
   const handleLogOut = async () => {
@@ -22,12 +20,10 @@ const Navbar = () => {
       const token = localStorage.getItem("token");
       if (!token) {
         setIsAuth(token);
-        showAlert("User Logout","#CE2029");
         navigate("/login");
       }
     } catch (e) {
-      showAlert("User Logout","#CE2029");
-      console.log("logout error", e);
+      console.log("logout erro", e);
     }
   };
 
