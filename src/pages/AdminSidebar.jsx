@@ -1,9 +1,9 @@
 import React from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
-import { useMyFunctions } from "../Components/AuthContext";
+import { useMyFunctions } from "../provider/MyAuthProvider";
 
 function AdminSidebar() {
-  const { activeTab, setActiveTab, users } = useAdminFunctions();
+  const { activeTab, setActiveTab } = useAdminFunctions();
   const { userName } = useMyFunctions();
   return (
     <aside className="h-full w-64 bg-[#241a42] p-4">
