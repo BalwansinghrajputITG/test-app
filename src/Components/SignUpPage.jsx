@@ -114,13 +114,12 @@ export default function SignUp() {
       const role = userData.userData.role;
       if (token !== "") {
         setIsAuth(token);
-        if (role == "admin") {
+        if (role == "admin"){
            showAlert("SignUp Successfull as Admin", "#006400");
-          return navigate("/admin/dasbord");//
+          return navigate("/admin/dasbord");
         }
         showAlert("SignUP Successfull", "#006400");
         navigate("/");
-       
       }
     }
   };
@@ -129,10 +128,8 @@ export default function SignUp() {
     <div className="flex justify-center items-center min-h-[900px] bg-gradient-to-r from-purple-600 to-indigo-600 px-4">
       <form
         onSubmit={submitHandle}
-        className="form flex flex-col gap-6 text-white shadow-lg rounded-2xl max-w-md w-full px-10 py-8 bg-black/40 backdrop-blur-md"
-      >
+        className="form flex flex-col gap-6 text-white shadow-lg rounded-2xl max-w-md w-full px-10 py-8 bg-black/40 backdrop-blur-md">
         <h1 className="text-4xl font-bold mb-4">Sign-up</h1>
-
         {/* Full Name */}
         <div className="flex flex-col">
           <label htmlFor="fullName" className="font-bold">
