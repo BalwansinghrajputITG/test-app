@@ -5,8 +5,7 @@ import { useAdminFunctions } from "../provider/AdminProvider";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isAuth, setIsAuth, userName } =
-    useMyFunctions();
+  const { isAuth, setIsAuth, userName } = useMyFunctions();
   const { role } = useAdminFunctions();
   const handleLogOut = async () => {
     try {
@@ -18,7 +17,6 @@ const Header = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       const token = localStorage.getItem("token");
-      console.log(token);
       if (!token) {
         setIsAuth(token);
         navigate("/login");

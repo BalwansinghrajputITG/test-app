@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { login } from "../servics/api";
 import { Link, useNavigate } from "react-router-dom";
-import { useMyFunctions } from "./AuthContext";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import { useMyFunctions } from "./AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
