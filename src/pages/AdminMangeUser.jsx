@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
-import { getAllUser } from "../servics/api";
+
 import { memo } from "react";
 
 function AdminMangeUser() {
@@ -9,7 +9,6 @@ function AdminMangeUser() {
     user,
     handleAddUser,
     activeTab,
-    newUser,
     userType,
     handleUserType,
     handleUserDelete,

@@ -1,18 +1,19 @@
 // src/components/AboutPage.jsx
-import React from 'react';
-import AboutSection from '../components/AboutSection';
+import React from "react";
+import AboutSection from "../Components/AboutSection";
 
 const AboutPage = () => {
   return (
-    <div className="about-page bg-[#2a1e55] w-full h-screen p-30 flex flex-col gap-5 text-center">
+    <div className="about-page bg-[#2a1e55] w-full p-30 flex flex-col gap-5 text-center">
       <header className="about-header text-white text-center">
-        <h1 className='font-bold text-3xl'>✨ About Us</h1>
+        <h1 className="font-bold text-3xl">✨ About Us</h1>
         <p>
-          Welcome to <strong>QuizGecho</strong> – your ultimate destination for fun, learning, and a little friendly competition!
+          Welcome to <strong>QuizGecho</strong> – your ultimate destination for
+          fun, learning, and a little friendly competition!
         </p>
       </header>
 
-      <AboutSection 
+      <AboutSection
         title="🧠 What We Do"
         content={[
           "We create and curate quizzes across a wide range of topics including:",
@@ -22,7 +23,7 @@ const AboutPage = () => {
           "- History & Geography",
           "- Movies, Music, and TV",
           "- Personality & Just-for-Fun quizzes",
-          "From quick daily brain teasers to deep-dive trivia battles, there’s always something new to explore!"
+          "From quick daily brain teasers to deep-dive trivia battles, there’s always something new to explore!",
         ]}
       />
 
@@ -31,7 +32,7 @@ const AboutPage = () => {
         content={[
           "- ✅ Fresh & fun quizzes added regularly",
           "- ✅ Designed for all ages and knowledge levels",
-          "Whether you're here to kill time, learn something new, or prove you’re the trivia master among your friends—we’ve got you covered."
+          "Whether you're here to kill time, learn something new, or prove you’re the trivia master among your friends—we’ve got you covered.",
         ]}
       />
 
@@ -40,12 +41,15 @@ const AboutPage = () => {
         content={[
           "Have feedback, quiz ideas, or just want to say hi? We’d love to hear from you!",
           "📧 Email us at: contact@yourdomain.com",
-          "🌐 Follow us on social media: @YourQuizWebsite"
+          "🌐 Follow us on social media: @YourQuizWebsite",
         ]}
       />
 
       <footer className="about-footer">
-        <p className='text-white text-center mt-10'>Thank you for being part of our quiz-loving community. Dive in, have fun, and keep those brains buzzing! 🧩🕹️📚</p>
+        <p className="text-white text-center mt-10">
+          Thank you for being part of our quiz-loving community. Dive in, have
+          fun, and keep those brains buzzing! 🧩🕹️📚
+        </p>
       </footer>
     </div>
   );
