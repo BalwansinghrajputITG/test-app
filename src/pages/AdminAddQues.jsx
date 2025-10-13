@@ -22,6 +22,7 @@ export default function AdminAddQues() {
     fetchAllQuestionForDelete,
   } = useAdminFunctions();
 
+
   return (
     <div>
       <TabButtons
