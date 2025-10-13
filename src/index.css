@@ -10,7 +10,7 @@
 }
 
 .header-wrapper {
-  background-color: rgba(64, 36, 165, 0.616);
+  background-color: #2a1e55;
   animation: fadeIn 1500ms;
   z-index: 1001;
 }

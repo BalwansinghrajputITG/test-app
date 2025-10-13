@@ -41,13 +41,6 @@ const Dashboard = () => {
                   alt=""
                 />
               </div>
-              <form className="bg-white mt-3 rounded-3xl w-50 p-2 cursor-pointer">
-                <input
-                  className="cursor-pointer"
-                  type="file"
-                  accept="image/jpg, image/jpeg, image/png"
-                />
-              </form>
             </div>
             <div className="details text-2xl font-semibold text-white flex flex-col gap-5 self-center">
               <div className="person-name">Name : {data.fullName}</div>
@@ -56,11 +49,11 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="scores">
-            <div className="heading grid grid-cols-4 font-bold text-2xl text-white">
-              <p>Date</p>
-              <p>Score</p>
-              <p>CorrectAnswers</p>
-              <p>Attempt</p>
+            <div className="heading grid grid-cols-3 font-bold text-2xl text-white">
+              <p className="pl-[50px]  text-left">Title</p>
+              <p className="text-center">Score</p>
+
+              <p className="pr-[50px] text-right">Detail</p>
             </div>
             {score.map((s, index) => {
               const dateObj = new Date(s.submitedON);
