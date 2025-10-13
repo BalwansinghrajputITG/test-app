@@ -1,7 +1,6 @@
 // src/components/AboutPage.jsx
 import React from "react";
 import AboutSection from "../Components/AboutSection";
-import { Helmet } from "react-helmet-async";
 
 const AboutPage = () => {
   return (
