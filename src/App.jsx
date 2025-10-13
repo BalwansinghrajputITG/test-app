@@ -14,6 +14,8 @@ import PrivateRouter from "./Components/PrivateRouter";
 import { MyContextProvider } from "./provider/MyAuthProvider";
 import Navbar from "./Components/Navbar";
 
+
+
 const App = () => {
   return (
     <AdminContextProvider>

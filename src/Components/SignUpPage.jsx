@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { singup } from "../servics/api";
 import { useMyFunctions } from "../provider/MyAuthProvider";
 
-
 export default function SignUp() {
   const [data, setData] = useState({
     fullName: "",

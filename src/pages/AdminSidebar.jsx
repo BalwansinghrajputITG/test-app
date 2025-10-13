@@ -20,7 +20,7 @@ function AdminSidebar() {
           onClick={() => setActiveTab("add-question")}
           className={`${
             activeTab == "add-question" ? "bg-purple-700" : ""
-          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer`}
+          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
           Add Questions
         </button>
@@ -28,7 +28,7 @@ function AdminSidebar() {
           onClick={() => setActiveTab("manage-users")}
           className={`${
             activeTab == "manage-users" ? "bg-purple-700" : ""
-          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer`}
+          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
           Manage Users
         </button>
@@ -36,7 +36,7 @@ function AdminSidebar() {
           onClick={() => setActiveTab("settings")}
           className={`${
             activeTab == "settings" ? "bg-purple-700" : ""
-          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer`}
+          } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
           Settings
         </button>
