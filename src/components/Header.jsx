@@ -52,19 +52,12 @@ const Header = () => {
               </Link>
               <Link className={"navs-link"} to="/about">
                 About
-<<<<<<< HEAD
-              </NavLink>
-              {/* <NavLink className={"navs-link"} to="/history">
-                History
-              </NavLink> */}
-=======
               </Link>
               {role === "admin" && isAuth && (
                 <Link className={"navs-link"} to="/admin/dasbord">
                   Admin
                 </Link>
               )}
->>>>>>> 625ee8b5acbf4cf4a2e5ce2377965fd733c6d19a
             </nav>
             <div className="login-btn self-center">
               {isAuth ? (
