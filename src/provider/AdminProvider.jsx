@@ -107,6 +107,7 @@ export const AdminContextProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
   const fetchAllQuestionForDelete = async () => {
     setQuestions(await fetchAllQuestions());
+    
   };
   // Delete a question by QuestionID (updated endpoint)
   // const deleteQuestionById = async (QuestionID) => {

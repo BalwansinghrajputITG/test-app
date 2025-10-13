@@ -90,10 +90,11 @@ export const handleAddQuestion = (obj) => {
 // Fetch all questions from backend
 export const fetchAllQuestions = async() => {
 
-    console.log("lsdknfkjf");
     try {
         const res = await axios.get("http://localhost:3000/question/all"); // your GET all questions API
         return res.data // assuming data is an array of questions
+        console.log(res.data, "sl;dfjlz");
+
     } catch (error) {
         console.error("Failed to fetch questions:", error);
     }
