@@ -28,8 +28,8 @@ function AdminAddQues() {
         <button
           onClick={() => setActiveTab("add-question")}
           className={`px-4 py-2 rounded ${
-            activeTab === "add-question" ? "bg-blue-700" : "bg-gray-700"
-          } hover:bg-blue-800`}
+activeTab === "add-question" ? "bg-indigo-600" : "bg-gray-700"
+          } hover:bg-indigo-800`}
         >
           Add Question
         </button>
@@ -39,8 +39,8 @@ function AdminAddQues() {
             fetchAllQuestionForDelete();  // fetch when switching tab
           }}
           className={`px-4 py-2 rounded ${
-            activeTab === "all-questions" ? "bg-blue-700" : "bg-gray-700"
-          } hover:bg-blue-800`}
+activeTab === "add-question" ? "bg-indigo-600" : "bg-gray-700"
+          } hover:bg-indigo-800`}
         >
           All Questions
         </button>
