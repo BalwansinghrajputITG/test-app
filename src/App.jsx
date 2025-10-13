@@ -31,8 +31,6 @@ const App = () => {
       <MyContextProvider>
         <Header />
  
-        <Navbar />
-
         <Routes>
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
