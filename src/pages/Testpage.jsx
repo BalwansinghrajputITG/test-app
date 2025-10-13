@@ -244,8 +244,7 @@ const Testpage = () => {
         </div>
       </div>
     </div>
-  );
-};
+)  }
 
 export default Testpage;
 
