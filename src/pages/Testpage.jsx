@@ -34,6 +34,8 @@ const Testpage = () => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape' || event.keyCode === 27) {
         setEscapePressed(true);
+      }else{
+        setEscapePressed(false);
       }
     };
 
@@ -146,7 +148,7 @@ const Testpage = () => {
       <TimerFunc onTimeUp={handleSubmit} />
       <div className="flex mb-5 gap-5 justify-center" >
         <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">Tab Change :-{tabHiddenCount}</p>
-        <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">Exit Screen: {escapePressed? "yes" : "no"}</p>
+        <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">Exit Screen: {escapePressed? "Yes" : "No"}</p>
       </div>
 
       <div className="test-box max-w-4xl mx-auto bg-[#3a2e6a] p-6 rounded-2xl shadow-lg">

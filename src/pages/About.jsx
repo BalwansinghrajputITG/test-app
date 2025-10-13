@@ -4,7 +4,7 @@ import AboutSection from '../components/AboutSection';
 
 const AboutPage = () => {
   return (
-    <div className="about-page bg-[#2a1e55] w-full h-screen p-30 flex flex-col gap-5 text-center">
+    <div className="about-page bg-[#2a1e55] w-full h-full p-30 flex flex-col gap-5 text-center">
       <header className="about-header text-white text-center">
         <h1 className='font-bold text-3xl'>✨ About Us</h1>
         <p>
