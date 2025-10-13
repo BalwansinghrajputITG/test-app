@@ -1,9 +1,9 @@
 import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useMyFunctions } from "./AuthContext";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import { useMyFunctions } from "../provider/MyAuthProvider";
 
-const Header = () => {
+const Navbar = () => {
   const navigate = useNavigate();
   const { isAuth, setIsAuth, userName } = useMyFunctions();
   const { role } = useAdminFunctions();
@@ -95,4 +95,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

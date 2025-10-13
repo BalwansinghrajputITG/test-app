@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { singup } from "../servics/api";
-import { useMyFunctions } from "./AuthContext";
+import { useMyFunctions } from "../provider/MyAuthProvider";
+
 
 export default function SignUp() {
   const [data, setData] = useState({

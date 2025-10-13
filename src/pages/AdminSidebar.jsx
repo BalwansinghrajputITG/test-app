@@ -1,6 +1,7 @@
 import React from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
-import { useMyFunctions } from "../Components/AuthContext";
+import { useMyFunctions } from "../provider/MyAuthProvider";
+
 
 function AdminSidebar() {
   const { activeTab, setActiveTab, users } = useAdminFunctions();

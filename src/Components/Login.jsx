@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { login } from "../servics/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminFunctions } from "../provider/AdminProvider";
-import { useMyFunctions } from "./AuthContext";
+import { useMyFunctions } from "../provider/MyAuthProvider";
+
+
 
 function Login() {
   const [email, setEmail] = useState("");

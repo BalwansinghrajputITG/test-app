@@ -10,14 +10,15 @@ import NotFound from "./Components/NotFound";
 import AdminDasbord from "./pages/AdminDasbord";
 import { AdminContextProvider } from "./provider/AdminProvider";
 import PrivateRouter from "./Components/PrivateRouter";
-import { MyContextProvider } from "./Components/AuthContext";
-import Header from "./Components/Header";
+
+import { MyContextProvider } from "./provider/MyAuthProvider";
+import Navbar from "./Components/Navbar";
 
 const App = () => {
   return (
     <AdminContextProvider>
       <MyContextProvider>
-        <Header />
+        <Navbar />
 
         <Routes>
           <Route index element={<Home />} />
