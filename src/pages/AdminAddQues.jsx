@@ -25,12 +25,13 @@ export default function AdminAddQues() {
 
   return (
     <div>
+      {activeTab === "all-questions" || activeTab === "add-question"&&(
       <TabButtons
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         fetchAllQuestionForDelete={fetchAllQuestionForDelete}
       />
-
+      )}
       {activeTab === "add-question" && (
         <AddQuestionForm
           question={question}
