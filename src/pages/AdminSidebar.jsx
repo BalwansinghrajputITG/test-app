@@ -21,7 +21,7 @@ function AdminSidebar() {
         <button
           onClick={() => setActiveTab("add-question")}
           className={`${
-            activeTab == "add-question" ? "bg-purple-700" : ""
+            activeTab == "add-question" ? "bg-purple-700" : activeTab=="all-questions"? "bg-purple-700":""
           } text-white text-lg py-2 hover:bg-purple-700 rounded  cursor-pointer transition duration-300`}
         >
           {t("Question")}
