@@ -44,17 +44,32 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="header-navs flex gap-10">
-            <nav className="navs flex gap-10 text-[18px] font-bold uppercase  self-center text-white ">
-              <Link className={"navs-link"} to="/">
+            <nav className=" flex gap-10 text-[18px] font-bold uppercase  self-center text-white ">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "navs-link-active navs" : "navs-link navs"
+                }
+              >
                 Home
-              </Link>
-              <Link className={"navs-link"} to="/about">
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "navs-link-active navs" : "navs-link navs"
+                }
+              >
                 About
-              </Link>
+              </NavLink>
               {role === "admin" && isAuth && (
-                <Link className={"navs-link"} to="/admin/dasbord">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "navs-link-active navs" : "navs-link navs"
+                  }
+                  to="/admin/dasbord"
+                >
                   Admin
-                </Link>
+                </NavLink>
               )}
             </nav>
             <div className="login-btn self-center">
