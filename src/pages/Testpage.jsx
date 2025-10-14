@@ -4,13 +4,13 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // ✅ i18next hook import करें
-import { useTranslation } from "react-i18next"; 
+import { useTranslation } from "react-i18next";
 //import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Testpage = () => {
   // ✅ useTranslation hook का उपयोग करें
-  const { t } = useTranslation(); 
-  
+  const { t } = useTranslation();
+
   const [showPopup, setShowPopup] = useState(false);
   const [Questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,6 +40,8 @@ const Testpage = () => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape" || event.keyCode === 27) {
         setEscapePressed(true);
+      }else{
+        setEscapePressed(false);
       }
     };
 
@@ -77,11 +79,13 @@ const Testpage = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/question/all");
+        const response = await axios.get(
+          "https://test-app-backend-ly6a.vercel.app/question/all"
+        );
         setQuestions(response.data);
-        console.log(t("Questions fetched:"), response.data); // ✅ t() जोड़ा गया
+        console.log(t("Questions fetched:"), response.data); 
       } catch (error) {
-        console.error(t("Error fetching questions:"), error); // ✅ t() जोड़ा गया
+        console.error(t("Error fetching questions:"), error); 
       } finally {
         setLoading(false);
       }
@@ -113,7 +117,7 @@ const Testpage = () => {
     }));
   };
 
-  // ✅ Submit all selected answers at once
+  //  Submit all selected answers at once
   const handleSubmit = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
     const userEmail = user.email;
@@ -137,11 +141,11 @@ const Testpage = () => {
         payload
       );
 
-      console.log(t("Test submitted successfully:"), response.data); // ✅ t() जोड़ा गया
-      alert(t("Test submitted successfully!")); // ✅ t() जोड़ा गया
+      console.log(t("Test submitted successfully:"), response.data); //  t() जोड़ा गया
+      alert(t("Test submitted successfully!")); //  t() जोड़ा गया
     } catch (error) {
-      console.error(t("Error submitting test:"), error); // ✅ t() जोड़ा गया
-      alert(t("Something went wrong while submitting test.")); // ✅ t() जोड़ा गया
+      console.error(t("Error submitting test:"), error); //  t() जोड़ा गया
+      alert(t("Something went wrong while submitting test.")); //  t() जोड़ा गया
     }
     navigate("/dashboard");
   };
@@ -159,28 +163,32 @@ const Testpage = () => {
       <TimerFunc onTimeUp={handleSubmit} />
       <div className="flex mb-5 gap-5 justify-center">
         <p className="page-tracker text-white p-3 rounded-3xl bg-violet-950 shadow-2xs shadow-black ">
-          {t("Tab Change")} :-{tabHiddenCount} {/* ✅ t() जोड़ा गया */}
+          {t("Tab Change")} :-{tabHiddenCount} {/*  t() जोड़ा गया */}
         </p>
         <p className="page-tracker text-white p-3 rounded-3xl bg-violet-950 shadow-2xs shadow-black ">
-          {t("Exit Screen")}: {escapePressed ? t("yes") : t("no")} {/* ✅ t() जोड़ा गया */}
+          {t("Exit Screen")}: {escapePressed ? t("yes") : t("no")}{" "}
+          {/* t() जोड़ा गया */}
         </p>
       </div>
 
       <div className="test-box max-w-4xl mx-auto bg-[#3a2e6a] p-6 rounded-2xl shadow-lg">
         <div className="box-heading mb-6">
           <h2 className="text-4xl text-center font-bold text-white">
-            {t("Start Test")} {/* ✅ t() जोड़ा गया */}
+            {t("Start Test")} {/*  t() जोड़ा गया */}
           </h2>
         </div>
 
         <div className="test-content mt-4">
           {loading ? (
-            <p className="text-white text-center">{t("Loading questions...")}</p> // ✅ t() जोड़ा गया
+            <p className="text-white text-center">
+              {t("Loading questions...")}
+            </p> //  t() जोड़ा गया
           ) : Questions.length > 0 && currentQuestion ? (
             <>
               <div className="question-box mb-4">
                 <h3 className="text-2xl font-semibold text-white">
-                  {t("Question")} {currentIndex + 1}: {currentQuestion.Question} {/* ✅ t() जोड़ा गया */}
+                  {t("Question")} {currentIndex + 1}: {currentQuestion.Question}{" "}
+                  {/*  t() जोड़ा गया */}
                 </h3>
               </div>
 
@@ -248,3 +256,7 @@ const Testpage = () => {
 
 export default Testpage;
 
+<<<<<<< HEAD
+=======
+export default Testpage;
+>>>>>>> 74cc20187ecb7e59fd1a2680457e147fb4131946

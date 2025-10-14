@@ -5,7 +5,7 @@ import SelectCard from "../Components/SelectCard";
 const Home = () => {
   return (
     <div>
-      <Background />
+      <Background/>
       <SelectCard />
     </div>
   );
