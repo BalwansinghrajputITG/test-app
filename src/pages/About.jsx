@@ -1,11 +1,11 @@
 // src/components/AboutPage.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import aboutHero from "/public/images/aboutHero.svg";
-import teamImg from "/public/images/team.svg";
-import quizPng from "/public/images/quiz.svg";
-import connectPng from "/public/images/connect.svg";
-import brain from "/public/images/brain.svg";
+import aboutHero from "/images/aboutHero.svg";
+import teamImg from "/images/team.svg";
+import quizPng from "/images/quiz.svg";
+import connectPng from "/images/connect.svg";
+import brain from "/images/brain.svg";
 
 const fadeIn = (direction = "up", delay = 0) => {
   const variants = {
@@ -60,11 +60,12 @@ const AboutPage = () => {
       <motion.section
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         variants={fadeIn("up")}
         className="relative flex flex-col md:flex-row items-center justify-center gap-10 py-16 px-6 md:px-20 z-10"
       >
         <motion.div
+          style={{ zIndex: 1 }}
           className="md:w-1/2 text-center md:text-left"
           variants={fadeIn("right", 0.2)}
         >
@@ -84,11 +85,18 @@ const AboutPage = () => {
           </a>
         </motion.div>
 
-        <motion.div className="md:w-1/2" variants={fadeIn("left", 0.3)}>
+        <motion.div
+          className="md:w-1/2"
+          variants={fadeIn("left", 0.3)}
+          drag
+          whileDrag={{ color: "red" }}
+          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+        >
           <img
             src={aboutHero}
             alt="Quiz Illustration"
             className="w-full max-w-md mx-auto drop-shadow-2xl"
+            style={{ pointerEvents: "none", zIndex: 0 }}
           />
         </motion.div>
       </motion.section>
@@ -97,7 +105,7 @@ const AboutPage = () => {
       <motion.section
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         variants={fadeIn("up")}
         className="relative py-16 px-6 md:px-20 bg-[#25194b]/60 rounded-3xl mx-5 my-8 shadow-xl backdrop-blur-sm border border-purple-500/20 z-10"
       >
@@ -113,7 +121,8 @@ const AboutPage = () => {
               🧠 What We Do
             </h2>
             <p className="text-gray-200 leading-relaxed">
-              We create and curate interactive quizzes covering a wide range of topics:
+              We create and curate interactive quizzes covering a wide range of
+              topics:
             </p>
             <ul className="mt-3 space-y-2 text-gray-300 text-left">
               <li>• General Knowledge & Current Affairs</li>
@@ -130,7 +139,7 @@ const AboutPage = () => {
       <motion.section
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         variants={fadeIn("up")}
         className="relative py-16 px-6 md:px-20 flex flex-col md:flex-row-reverse items-center gap-10 z-10"
       >
@@ -145,7 +154,8 @@ const AboutPage = () => {
             💡 Why Choose QuizGecho?
           </h2>
           <p className="text-gray-200 leading-relaxed">
-            We bring fun, knowledge, and community together in one engaging experience.
+            We bring fun, knowledge, and community together in one engaging
+            experience.
           </p>
           <ul className="mt-3 space-y-2 text-gray-300 text-left">
             <li>✅ New quizzes every week</li>
@@ -160,7 +170,7 @@ const AboutPage = () => {
       <motion.section
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         variants={fadeIn("up")}
         className="relative py-16 px-6 md:px-20 bg-[#1f153d]/80 flex flex-col md:flex-row items-center gap-10 rounded-3xl mx-5 my-8 z-10"
       >
@@ -175,7 +185,9 @@ const AboutPage = () => {
             👩‍💻 Meet Our Team
           </h2>
           <p className="text-gray-300 max-w-xl">
-            Behind QuizGecho is a passionate group of developers, designers, and trivia enthusiasts dedicated to making learning fun and accessible for everyone.
+            Behind QuizGecho is a passionate group of developers, designers, and
+            trivia enthusiasts dedicated to making learning fun and accessible
+            for everyone.
           </p>
         </motion.div>
       </motion.section>
@@ -184,7 +196,7 @@ const AboutPage = () => {
       <motion.section
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         variants={fadeIn("up")}
         className="relative py-16 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-10 z-10"
       >
@@ -202,7 +214,8 @@ const AboutPage = () => {
             💬 Let’s Connect!
           </h2>
           <p className="text-gray-300">
-            Have ideas, suggestions, or want to collaborate? We’d love to hear from you!
+            Have ideas, suggestions, or want to collaborate? We’d love to hear
+            from you!
           </p>
           <p className="mt-3">
             📧 <strong>contact@quizgecho.com</strong>
@@ -215,7 +228,7 @@ const AboutPage = () => {
       <motion.footer
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         variants={fadeIn("up")}
         className="relative py-10 border-t border-purple-500/20 text-center text-gray-400 z-10"
       >
