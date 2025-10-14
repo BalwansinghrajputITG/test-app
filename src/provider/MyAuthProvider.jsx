@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-
+import { useAlert } from "../servics/ApiChanger";
 const MyContext = createContext();
 
 export const MyContextProvider = ({ children }) => {
+  const { showAlert } = useAlert();
   const token = localStorage.getItem("token") || null;
   const [isAuth, setIsAuth] = useState(token);
   const [userName, setUserName] = useState("u");
@@ -12,8 +13,9 @@ export const MyContextProvider = ({ children }) => {
     if (user) {
       const fristLater = user.fullName;
       setUserName(fristLater);
+      setTimeout(()=>{showAlert(`Welcome ${fristLater}`,"#006400");},1e3);
     } else {
-      setUserName("U");
+           setUserName("U"); 
     }
   }, [isAuth]);
 

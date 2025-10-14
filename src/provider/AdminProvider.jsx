@@ -12,6 +12,7 @@ import axios from "axios";
 const AdminContext = createContext();
 
 export const AdminContextProvider = ({ children }) => {
+  const {showAlert} = useAlert();
   // Current logged-in user
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
@@ -53,6 +54,7 @@ export const AdminContextProvider = ({ children }) => {
       user.id === id ? { ...user, role: newRole } : user
     );
     setUsers(updated);
+    showAlert("user Role Updated","#E9D502");
   };
 
   // Handle adding a new user
@@ -102,7 +104,7 @@ export const AdminContextProvider = ({ children }) => {
     const data = await deleteUserById(otherUserId);
     showAlert("user Deletion Successfull","#CE2029")
     console.log(data.msg);
-    alert(data.msg);
+    showAlert(data.msg,"#E9D502");
     fetchUsers();
   };
 

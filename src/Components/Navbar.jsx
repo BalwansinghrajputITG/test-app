@@ -22,8 +22,9 @@ const Navbar = () => {
       localStorage.removeItem("user");
       const token = localStorage.getItem("token");
       if (!token) {
+                  showAlert("LogOut SuccessFully","#CE2029");
         setIsAuth(token);
-        navigate("/login");
+       setTimeout(()=>{ navigate("/login");},1e3);
       }
     } catch (e) {
       console.log("logout erro", e);
