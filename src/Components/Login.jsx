@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { login } from "../servics/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminFunctions } from "../provider/AdminProvider";
-import Alert from "./Alert";
 import { useAlert } from "../servics/ApiChanger";
 import { useMyFunctions } from "../provider/MyAuthProvider";
 
