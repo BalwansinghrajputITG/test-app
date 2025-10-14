@@ -89,7 +89,7 @@ export const handleAddQuestion = (obj) => {
 };
 
 // Fetch all questions from backend
-import Loader from "../Components/Loder";
+
 export const fetchAllQuestions = async() => {
 
     try {
@@ -99,6 +99,7 @@ export const fetchAllQuestions = async() => {
         console.error("Failed to fetch questions:", error);
     }
 };
+
 export const deleteQuestionById = async(QuestionID) => {
     try {
         const res = await axios.post(
