@@ -4,7 +4,7 @@ const LiveUser = () => {
   const [liveUsers, setLiveUsers] = useState(0);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://test-app-eight-inky.vercel.app/");
+    const ws = new WebSocket("ws://https://test-app-eight-inky.vercel.app/");
 
     ws.onmessage = (event) => {
       setLiveUsers(Number(event.data)); // <-- fix here
