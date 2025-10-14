@@ -14,7 +14,7 @@ import { MyContextProvider } from "./provider/MyAuthProvider";
 import Navbar from "./Components/Navbar";
 import LiveUser from "./Components/LiveUser";
 import Alert from "./Components/Alert";
-import Login from "./components/Login";
+import Login from "./Components/Login";
 
 const App = () => {
   return (
