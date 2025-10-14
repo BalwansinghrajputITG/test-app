@@ -11,7 +11,7 @@ const AdminDasbord = () => {
       <AdminSidebar />
 
       {/* Main Content */}
-      <main className="flex-1 p-8 text-white overflow-auto">
+      <main className="flex-1 p-8 text-white overflow-auto question-flow">
         <AdminAddQues />
 
         <AdminMangeUser />

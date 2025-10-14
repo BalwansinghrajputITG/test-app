@@ -256,7 +256,3 @@ const Testpage = () => {
 
 export default Testpage;
 
-<<<<<<< HEAD
-=======
-export default Testpage;
->>>>>>> 74cc20187ecb7e59fd1a2680457e147fb4131946
