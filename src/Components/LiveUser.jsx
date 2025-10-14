@@ -21,7 +21,7 @@ const LiveUser = () => {
   }, []);
 
   return (
-    <div>
+    <div className='fixed bottom-3 left-2 py-2 px-3 rounded-3xl z-40 bg-violet-950 text-white liveUser-bar'>
       <h2>Live Users Online: {liveUsers}</h2>
     </div>
   );
