@@ -89,7 +89,7 @@ export const handleAddQuestion = (obj) => {
 };
 
 // Fetch all questions from backend
-import Loader from "../Components/Loder";
+
 export const fetchAllQuestions = async() => {
 
     try {
