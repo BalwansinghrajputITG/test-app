@@ -1,3 +1,4 @@
+
 import TimerFunc from "../Components/TimeFun";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
@@ -16,7 +17,7 @@ const Testpage = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+  
   const [tabHiddenCount, setTabHiddenCount] = useState(0);
 
   useEffect(() => {
@@ -251,7 +252,7 @@ const Testpage = () => {
         </div>
       </div>
     </div>
-  );
-};
+)  }
 
 export default Testpage;
+

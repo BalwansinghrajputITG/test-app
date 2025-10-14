@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { singup } from "../servics/api";
+import Alert from "./Alert";
+import { useAlert } from "../servics/ApiChanger";
 import { useMyFunctions } from "../provider/MyAuthProvider";
 
 export default function SignUp() {
+  const { showAlert } = useAlert();
   const [data, setData] = useState({
     fullName: "",
     email: "",
@@ -28,8 +31,9 @@ export default function SignUp() {
 
     if (token) {
       navigate("/");
+      showAlert("HomePage", "#006400");
     }
-  });
+  },[]);
 
   //  Validations
 
@@ -102,16 +106,20 @@ export default function SignUp() {
     // Proceed only if no errors
     const isValid = Object.values(newErrors).every((v) => v === "");
     if (isValid) {
+      showAlert('user SignUP SuccessFull', "#006400");
       const userData = await singup(data);
+   console.log(userData.userData)
       localStorage.setItem("token", userData.userData.token);
       localStorage.setItem("user", JSON.stringify(userData.userData));
       const token = localStorage.getItem("token");
       const role = userData.userData.role;
       if (token !== "") {
         setIsAuth(token);
-        if (role == "admin") {
+        if (role == "admin"){
+           showAlert("SignUp Successfull as Admin", "#006400");
           return navigate("/admin/dasbord");
         }
+        showAlert("SignUP Successfull", "#006400");
         navigate("/");
       }
     }
@@ -121,10 +129,8 @@ export default function SignUp() {
     <div className="flex justify-center items-center min-h-[900px] bg-gradient-to-r from-purple-600 to-indigo-600 px-4">
       <form
         onSubmit={submitHandle}
-        className="form flex flex-col gap-6 text-white shadow-lg rounded-2xl max-w-md w-full px-10 py-8 bg-black/40 backdrop-blur-md"
-      >
+        className="form flex flex-col gap-6 text-white shadow-lg rounded-2xl max-w-md w-full px-10 py-8 bg-black/40 backdrop-blur-md">
         <h1 className="text-4xl font-bold mb-4">Sign-up</h1>
-
         {/* Full Name */}
         <div className="flex flex-col">
           <label htmlFor="fullName" className="font-bold">
@@ -138,9 +144,8 @@ export default function SignUp() {
             onChange={handleChanges}
             id="fullName"
             placeholder="Name Here"
-            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${
-              errors.fullName ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${errors.fullName ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           />
           {errors.fullName && (
             <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
@@ -160,9 +165,8 @@ export default function SignUp() {
             onChange={handleChanges}
             id="email"
             placeholder="E-mail Address"
-            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${
-              errors.email ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${errors.email ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -182,9 +186,8 @@ export default function SignUp() {
             onChange={handleChanges}
             id="phoneNumber"
             placeholder="10-digit phone"
-            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${
-              errors.phoneNumber ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${errors.phoneNumber ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           />
           {errors.phoneNumber && (
             <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>
@@ -204,9 +207,8 @@ export default function SignUp() {
             onChange={handleChanges}
             id="password"
             placeholder="Password Here"
-            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${
-              errors.password ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none px-2 py-1 rounded-md ${errors.password ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           />
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">{errors.password}</p>
@@ -224,9 +226,8 @@ export default function SignUp() {
             onChange={handleClass}
             id="userClass"
             required
-            className={`border-b text-lg outline-none w-full px-2 py-1 rounded-md ${
-              errors.userClass ? "border-red-500 bg-red-100 text-red-900" : ""
-            }`}
+            className={`border-b text-lg outline-none w-full px-2 py-1 rounded-md ${errors.userClass ? "border-red-500 bg-red-100 text-red-900" : ""
+              }`}
           >
             <option className="text-black" value="class">
               Select Class

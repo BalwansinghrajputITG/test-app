@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { dashboard } from "../servics/api";
+import Alert from "../Components/Alert";
+
 import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
