@@ -231,3 +231,7 @@
 .liveUser-bar{
     box-shadow: 0px 3px 4px 2px rgb(0, 0, 0);
 }
+
+.question-flow::-webkit-scrollbar{
+    display: none;
+}
