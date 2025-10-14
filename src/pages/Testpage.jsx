@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // ✅ i18next hook import करें
 import { useTranslation } from "react-i18next";
+import MCQ from "./questionsType/MCQ";
+import STQ from "./questionsType/STQ";
 //import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Testpage = () => {
@@ -78,9 +80,7 @@ const Testpage = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(
-          "https://test-app-backend-xi.vercel.app/question/all"
-        );
+        const response = await axios.get("http://localhost:3000/question/all");
         setQuestions(response.data);
         console.log(t("Questions fetched:"), response.data);
       } catch (error) {
@@ -136,7 +136,7 @@ const Testpage = () => {
       };
 
       const response = await axios.post(
-        "https://test-app-backend-ly6a.vercel.app/question/submit_answer",
+        "http://localhost:3000/question/submit_answer",
         payload
       );
 
@@ -150,30 +150,29 @@ const Testpage = () => {
   };
 
   const currentQuestion = Questions[currentIndex];
+  console.log("jay ho", currentQuestion);
 
   return (
     <div
       className="test-wrapper bg-[#2a1e55] w-full min-h-screen p-4"
       ref={elementRef}
     >
-      {/* If you have popup component, uncomment below line */}
-      {/* {showPopup && <PopUp onStart={handleStart} />} */}
 
       <TimerFunc onTimeUp={handleSubmit} />
       <div className="flex mb-5 gap-5 justify-center">
         <p className="page-tracker text-white p-3 rounded-3xl bg-violet-950 shadow-2xs shadow-black ">
-          {t("Tab Change")} :-{tabHiddenCount} {/*  t() जोड़ा गया */}
+          {t("Tab Change")} :-{tabHiddenCount} 
         </p>
         <p className="page-tracker text-white p-3 rounded-3xl bg-violet-950 shadow-2xs shadow-black ">
           {t("Exit Screen")}: {escapePressed ? t("yes") : t("no")}{" "}
-          {/* t() जोड़ा गया */}
+          
         </p>
       </div>
 
       <div className="test-box max-w-4xl mx-auto bg-[#3a2e6a] p-6 rounded-2xl shadow-lg">
         <div className="box-heading mb-6">
           <h2 className="text-4xl text-center font-bold text-white">
-            {t("Start Test")} {/*  t() जोड़ा गया */}
+            {t("Start Test")}
           </h2>
         </div>
 
@@ -181,72 +180,26 @@ const Testpage = () => {
           {loading ? (
             <p className="text-white text-center">
               {t("Loading questions...")}
-            </p> //  t() जोड़ा गया
+            </p>
           ) : Questions.length > 0 && currentQuestion ? (
-            <>
-              <div className="question-box mb-4">
-                <h3 className="text-2xl font-semibold text-white">
-                  {t("Question")} {currentIndex + 1}: {currentQuestion.Question}{" "}
-                  {/*  t() जोड़ा गया */}
-                </h3>
-              </div>
-
-              <div className="options mb-6">
-                <div className="flex flex-col gap-2">
-                  {currentQuestion.Answers.map((answer, i) => (
-                    <label
-                      key={answer.AnswerID}
-                      className="options-div text-[18px] font-medium text-white bg-[#4b3f7f] p-2 rounded flex items-center cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        name={`question_${currentQuestion.QuestionID}`}
-                        value={answer.AnswerID}
-                        checked={
-                          selectedAnswers[currentQuestion.QuestionID] ===
-                          answer.AnswerID
-                        }
-                        onChange={() =>
-                          AnswerSelect(
-                            currentQuestion.QuestionID,
-                            answer.AnswerID
-                          )
-                        }
-                        className="mr-2"
-                      />
-                      {i + 1}. {answer.Answer}
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div className="buttons flex justify-between items-center">
-                <button
-                  className="prev-btn font-bold text-white px-4 py-2 bg-[#443577] rounded disabled:opacity-50"
-                  onClick={handlePrev}
-                  disabled={currentIndex === 0}
-                >
-                  {t("◀ Previous")} {/* ✅ t() जोड़ा गया */}
-                </button>
-
-                <button
-                  className="sub-btn font-bold px-4 py-2 bg-green-500 text-black rounded"
-                  onClick={handleSubmit}
-                >
-                  {t("Submit")} {/* ✅ t() जोड़ा गया */}
-                </button>
-
-                <button
-                  className="next-btn font-bold text-white px-4 py-2 bg-[#443577] rounded disabled:opacity-50"
-                  onClick={handleNext}
-                  disabled={currentIndex === Questions.length - 1}
-                >
-                  {t("Next ▶")} {/* ✅ t() जोड़ा गया */}
-                </button>
-              </div>
-            </>
+            currentQuestion.QuestionType == "mcq" ? (
+              <MCQ
+                currentIndex={currentIndex}
+                currentQuestion={currentQuestion}
+                handlePrev={handlePrev}
+                handleSubmit={handleSubmit}
+                handleNext={handleNext}
+                selectedAnswers={selectedAnswers}
+                Questions={Questions}
+                AnswerSelect={AnswerSelect}
+              />
+            ) : currentQuestion.QuestionType == "moq" ? (
+              <MOQ />
+            ) : (
+              <STQ />
+            )
           ) : (
-            <p className="text-white text-center">{t("No questions found.")}</p> // ✅ t() जोड़ा गया
+            <p className="text-white text-center">{t("No questions found.")}</p> 
           )}
         </div>
       </div>

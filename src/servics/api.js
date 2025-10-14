@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://test-app-backend-xi.vercel.app";
+const BASE_URL = "http://localhost:3000";
 
 export const singup = async (obj) => {
   try {
