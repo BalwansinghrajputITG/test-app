@@ -1,6 +1,9 @@
 import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import { useAlert } from "../servics/ApiChanger";
+import { useMyFunctions } from "../provider/MyAuthProvider";
+import  LanguageSwitcher  from "./LanguageSwitcher"
 
 const Navbar = () => {
   const {showAlert} = useAlert();

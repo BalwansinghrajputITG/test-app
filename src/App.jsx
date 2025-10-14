@@ -11,10 +11,7 @@ import NotFound from "./Components/NotFound";
 import AdminDasbord from "./pages/AdminDasbord";
 import { AdminContextProvider } from "./provider/AdminProvider";
 import PrivateRouter from "./Components/PrivateRouter";
-import { MyContextProvider } from "./Components/AuthContext";
 import Alert from "./Components/Alert";
- 
-
 import AddPeople from "./Components/addentitys";
 
 
@@ -23,13 +20,11 @@ import Navbar from "./Components/Navbar";
 
 
 
-import AdminPage from "./pages/AdminPage";
-
 const App = () => {
   return (
     <AdminContextProvider>
       <MyContextProvider>
-        <Header />
+        <Navbar />
  
         <Routes>
           <Route index element={<Home />} />

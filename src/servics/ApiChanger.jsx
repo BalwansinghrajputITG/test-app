@@ -17,7 +17,7 @@ export const AlertProvider = ({ children }) => {
       }, 3000);
       return () => clearTimeout(timer); // clear previous timer on change
     }
-  }, [alertConfig]);
+  }, []);
 
   // ✅ Just show alert — logic is clean
   const showAlert = (message, color = '#f44336') => {

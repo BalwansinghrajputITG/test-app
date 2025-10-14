@@ -4,8 +4,11 @@ import { singup } from "../servics/api";
 import { useMyFunctions } from "../provider/MyAuthProvider";
 // import AdminMangeUser from "../pages/AdminMangeUser";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import Alert from "./Alert";
+import { useAlert } from "../servics/ApiChanger";
 
 export default function AddPeople() {
+    const {showAlert} = useAlert();
     const { userType } = useAdminFunctions();
     const [data, setData] = useState({
         fullName: "",
@@ -103,11 +106,12 @@ export default function AddPeople() {
             console.log(userData);
             
             if (userData.success) {
-                alert(userType + " Added Succesfully");
+                showAlert(`${userType} Added Successfully`,"#00640");
             };
             navigate("/admin/dasbord");
             // }
         }
+        showAlert("Invalid Login Creditials");
     };
 
     return (
