@@ -12,14 +12,17 @@ import PrivateRouter from "./Components/PrivateRouter";
 
 import AddPeople from "./Components/addentitys";
 
-
 import { MyContextProvider } from "./provider/MyAuthProvider";
 import Navbar from "./Components/Navbar";
+<<<<<<< HEAD
 import Login from "./components/Login";
 import LiveUser from "./Components/LiveUser";
 
 
 
+=======
+import TournamentPage from "./pages/TournamentPage";
+>>>>>>> d43e4d8d6b5d4f944280b24b0ad9cdbed9ecd1e2
 
 const App = () => {
   return (
@@ -41,6 +44,7 @@ const App = () => {
 
           {/* Normal protected routes */}
           <Route element={<ProtectedRoutes />}>
+            <Route path="/tournament" element={<TournamentPage />} />
             <Route path="/test" element={<Testpage />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
