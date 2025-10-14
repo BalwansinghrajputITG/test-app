@@ -12,7 +12,7 @@ import PrivateRouter from "./Components/PrivateRouter";
 import AddPeople from "./Components/addentitys";
 import { MyContextProvider } from "./provider/MyAuthProvider";
 import Navbar from "./Components/Navbar";
-import Login from "./components/Login";
+import Login from "./Components/Login";
 import LiveUser from "./Components/LiveUser";
 
 const App = () => {
