@@ -99,6 +99,7 @@ export const fetchAllQuestions = async() => {
         console.error("Failed to fetch questions:", error);
     }
 };
+
 export const deleteQuestionById = async(QuestionID) => {
     try {
         const res = await axios.post(

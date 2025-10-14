@@ -2,11 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 function LanguageSwitcher() {
-  // useTranslation से हमें ट्रांसलेशन फ़ंक्शन (t) और i18n इंस्टेंस मिलता है
+
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
-    // i18n इंस्टेंस में changeLanguage फ़ंक्शन को कॉल करें
+
     i18n.changeLanguage(lng);
   };
 
