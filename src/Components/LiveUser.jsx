@@ -1,36 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 const LiveUser = () => {
-    const [activeUsers, setActiveUsers] = useState(0);
+  const [liveUsers, setLiveUsers] = useState(0);
 
-    useEffect(() => {
-        const connectToBackend = () => {
-            console.log('Connecting to active user service...');
-            setActiveUsers(Math.floor(Math.random() * 100) + 1); /
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:3000');
 
-            const intervalId = setInterval(() => {
-                const newCount = Math.max(0, activeUsers + (Math.random() > 0.5 ? 1 : -1));
-                setActiveUsers(newCount);
-            }, 5000);
+    ws.onmessage = (event) => {
+      setLiveUsers(Number(event.data));  // <-- fix here
+    };
 
-            return () => {
-                clearInterval(intervalId); // Cleanup on unmount
-                console.log('Disconnected from active user service.');
-            };
-        };
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
 
-        const cleanup = connectToBackend();
-        return cleanup;
-    }, [activeUsers]);
+    // Cleanup on unmount
+    return () => {
+      ws.close();
+    };
+  }, []);
 
-
-    return (
-        <div>
-            <div  >
-                <h2>Active Users: {activeUsers}</h2>
-            </div>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h2>Live Users Online: {liveUsers}</h2>
+    </div>
+  );
+};
 
 export default LiveUser;

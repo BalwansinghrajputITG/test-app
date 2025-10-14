@@ -2,9 +2,14 @@ import TimerFunc from "../Components/TimeFun";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+// ✅ i18next hook import करें
+import { useTranslation } from "react-i18next"; 
 //import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Testpage = () => {
+  // ✅ useTranslation hook का उपयोग करें
+  const { t } = useTranslation(); 
+  
   const [showPopup, setShowPopup] = useState(false);
   const [Questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -58,7 +63,7 @@ const Testpage = () => {
         })
         .catch((err) => {
           console.error(
-            `Error attempting to enable fullscreen: ${err.message}`
+            `${t("Error attempting to enable fullscreen")}: ${err.message}` // ✅ t() जोड़ा गया
           );
         });
     } else {
@@ -75,9 +80,9 @@ const Testpage = () => {
       try {
         const response = await axios.get("http://localhost:3000/question/all");
         setQuestions(response.data);
-        console.log("Questions fetched:", response.data);
+        console.log(t("Questions fetched:"), response.data); // ✅ t() जोड़ा गया
       } catch (error) {
-        console.error("Error fetching questions:", error);
+        console.error(t("Error fetching questions:"), error); // ✅ t() जोड़ा गया
       } finally {
         setLoading(false);
       }
@@ -133,11 +138,11 @@ const Testpage = () => {
         payload
       );
 
-      console.log("✅ Test submitted successfully:", response.data);
-      alert("✅ Test submitted successfully!");
+      console.log(t("Test submitted successfully:"), response.data); // ✅ t() जोड़ा गया
+      alert(t("Test submitted successfully!")); // ✅ t() जोड़ा गया
     } catch (error) {
-      console.error("❌ Error submitting test:", error);
-      alert("❌ Something went wrong while submitting test.");
+      console.error(t("Error submitting test:"), error); // ✅ t() जोड़ा गया
+      alert(t("Something went wrong while submitting test.")); // ✅ t() जोड़ा गया
     }
     navigate("/dashboard");
   };
@@ -154,29 +159,29 @@ const Testpage = () => {
 
       <TimerFunc onTimeUp={handleSubmit} />
       <div className="flex mb-5 gap-5 justify-center">
-        <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">
-          Tab Change :-{tabHiddenCount}
+        <p className="page-tracker text-white p-3 rounded-3xl bg-violet-950 shadow-2xs shadow-black ">
+          {t("Tab Change")} :-{tabHiddenCount} {/* ✅ t() जोड़ा गया */}
         </p>
-        <p className="page-tracker text-white p-3  rounded-3xl bg-violet-950 shadow-2xs shadow-black ">
-          Exit Screen: {escapePressed ? "yes" : "no"}
+        <p className="page-tracker text-white p-3 rounded-3xl bg-violet-950 shadow-2xs shadow-black ">
+          {t("Exit Screen")}: {escapePressed ? t("yes") : t("no")} {/* ✅ t() जोड़ा गया */}
         </p>
       </div>
 
       <div className="test-box max-w-4xl mx-auto bg-[#3a2e6a] p-6 rounded-2xl shadow-lg">
         <div className="box-heading mb-6">
           <h2 className="text-4xl text-center font-bold text-white">
-            Start Test
+            {t("Start Test")} {/* ✅ t() जोड़ा गया */}
           </h2>
         </div>
 
         <div className="test-content mt-4">
           {loading ? (
-            <p className="text-white text-center">Loading questions...</p>
+            <p className="text-white text-center">{t("Loading questions...")}</p> // ✅ t() जोड़ा गया
           ) : Questions.length > 0 && currentQuestion ? (
             <>
               <div className="question-box mb-4">
                 <h3 className="text-2xl font-semibold text-white">
-                  Question {currentIndex + 1}: {currentQuestion.Question}
+                  {t("Question")} {currentIndex + 1}: {currentQuestion.Question} {/* ✅ t() जोड़ा गया */}
                 </h3>
               </div>
 
@@ -215,14 +220,14 @@ const Testpage = () => {
                   onClick={handlePrev}
                   disabled={currentIndex === 0}
                 >
-                  ◀ Previous
+                  {t("◀ Previous")} {/* ✅ t() जोड़ा गया */}
                 </button>
 
                 <button
                   className="sub-btn font-bold px-4 py-2 bg-green-500 text-black rounded"
                   onClick={handleSubmit}
                 >
-                  Submit
+                  {t("Submit")} {/* ✅ t() जोड़ा गया */}
                 </button>
 
                 <button
@@ -230,12 +235,12 @@ const Testpage = () => {
                   onClick={handleNext}
                   disabled={currentIndex === Questions.length - 1}
                 >
-                  Next ▶
+                  {t("Next ▶")} {/* ✅ t() जोड़ा गया */}
                 </button>
               </div>
             </>
           ) : (
-            <p className="text-white text-center">No questions found.</p>
+            <p className="text-white text-center">{t("No questions found.")}</p> // ✅ t() जोड़ा गया
           )}
         </div>
       </div>

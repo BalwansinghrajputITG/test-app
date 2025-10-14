@@ -2,11 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { dashboard } from "../servics/api";
+import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
   const [data, setData] = useState({});
   const [score, setScore] = useState([]);
   const [openIndexes, setOpenIndexes] = useState([]);
+  const { t } = useTranslation();
 
   const getDashboard = async () => {
     const user = JSON.parse(localStorage.getItem("user")) || {};
@@ -28,7 +30,7 @@ const Dashboard = () => {
       <div className="dashboard border-1 border-white min-h-screen rounded-3xl ">
         <div className="box-heading">
           <h2 className="text-4xl text-center font-bold text-white">
-            Dashboard
+            {t("Dashboard")}
           </h2>
         </div>
         <div className="dash-content">
