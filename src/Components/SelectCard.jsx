@@ -1,7 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 const SelectCard = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="absolute w-full bottom-0">
       <div className="card-list flex gap-20 justify-center">
@@ -15,7 +18,7 @@ const SelectCard = () => {
             </div>
             <div className="content bg-white rounded-3xl absolute w-full bottom-0">
               <h3 className="text-black font-bold text-3xl text-center">
-                📝 Tournament
+                {t("📝 Tournament")}
               </h3>
             </div>
           </div>
@@ -30,7 +33,7 @@ const SelectCard = () => {
             </div>
             <div className="content bg-white rounded-3xl absolute w-full bottom-0">
               <h3 className="text-black font-bold text-3xl text-center">
-                📝 Practise Quiz
+                {t("📝 Practise Quiz")}
               </h3>
             </div>
           </div>
@@ -45,7 +48,7 @@ const SelectCard = () => {
             </div>
             <div className="content  bg-white rounded-3xl absolute w-full bottom-0">
               <h3 className="text-black font-bold text-3xl text-center">
-                📊 Dashboard
+                {t("📊 Dashboard")}
               </h3>
             </div>
           </div>
