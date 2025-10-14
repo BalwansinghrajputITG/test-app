@@ -4,7 +4,6 @@ import { TabButtons } from "./TabButtons";
 import { AddQuestionForm } from "./addquestionform";
 import { QuestionsList } from "./Questionlist";
 
-
 export default function AdminAddQues() {
   const {
     activeTab,
@@ -24,11 +23,13 @@ export default function AdminAddQues() {
 
   return (
     <div>
-      <TabButtons
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        fetchAllQuestionForDelete={fetchAllQuestionForDelete}
-      />
+      {(activeTab === "add-question" || activeTab === "all-questions") && (
+        <TabButtons
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          fetchAllQuestionForDelete={fetchAllQuestionForDelete}
+        />
+      )}
 
       {activeTab === "add-question" && (
         <AddQuestionForm
@@ -44,7 +45,10 @@ export default function AdminAddQues() {
       )}
 
       {activeTab === "all-questions" && (
-        <QuestionsList questions={questions} delete_question={delete_question} />
+        <QuestionsList
+          questions={questions}
+          delete_question={delete_question}
+        />
       )}
     </div>
   );

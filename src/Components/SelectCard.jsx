@@ -5,6 +5,21 @@ const SelectCard = () => {
   return (
     <div className="absolute w-full bottom-0">
       <div className="card-list flex gap-20 justify-center">
+        <Link to="/tournament">
+          <div className="card w-90 h-80 rounded-3xl relative">
+            <div className="bg-image w-full h-full rounded-3xl">
+              <img
+                className="rounded-3xl w-full h-full"
+                src="/images/tournament.png"
+              />
+            </div>
+            <div className="content bg-white rounded-3xl absolute w-full bottom-0">
+              <h3 className="text-black font-bold text-3xl text-center">
+                📝 Tournament
+              </h3>
+            </div>
+          </div>
+        </Link>
         <Link to="/test">
           <div className="card w-90 h-80 rounded-3xl relative">
             <div className="bg-image w-full h-full rounded-3xl">
@@ -15,7 +30,7 @@ const SelectCard = () => {
             </div>
             <div className="content bg-white rounded-3xl absolute w-full bottom-0">
               <h3 className="text-black font-bold text-3xl text-center">
-                📝 Start Quiz
+                📝 Practise Quiz
               </h3>
             </div>
           </div>

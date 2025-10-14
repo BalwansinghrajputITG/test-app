@@ -13,12 +13,9 @@ import PrivateRouter from "./Components/PrivateRouter";
 
 import AddPeople from "./Components/addentitys";
 
-
 import { MyContextProvider } from "./provider/MyAuthProvider";
 import Navbar from "./Components/Navbar";
-
-
-
+import TournamentPage from "./pages/TournamentPage";
 
 const App = () => {
   return (
@@ -35,11 +32,12 @@ const App = () => {
           {/*  Admin protected route */}
           <Route element={<PrivateRouter />}>
             <Route path="/admin/dasbord" element={<AdminDasbord />} />
-            <Route path="/admin/dasbord/addentitys" element={<AddPeople/>} />
+            <Route path="/admin/dasbord/addentitys" element={<AddPeople />} />
           </Route>
 
           {/* Normal protected routes */}
           <Route element={<ProtectedRoutes />}>
+            <Route path="/tournament" element={<TournamentPage />} />
             <Route path="/test" element={<Testpage />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
