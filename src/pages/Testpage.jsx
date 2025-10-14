@@ -1,4 +1,3 @@
-
 import TimerFunc from "../Components/TimeFun";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
@@ -17,7 +16,7 @@ const Testpage = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  
+
   const [tabHiddenCount, setTabHiddenCount] = useState(0);
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const Testpage = () => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape" || event.keyCode === 27) {
         setEscapePressed(true);
-      }else{
+      } else {
         setEscapePressed(false);
       }
     };
@@ -80,12 +79,12 @@ const Testpage = () => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          "https://test-app-backend-ly6a.vercel.app/question/all"
+          "https://test-app-backend-xi.vercel.app/question/all"
         );
         setQuestions(response.data);
-        console.log(t("Questions fetched:"), response.data); 
+        console.log(t("Questions fetched:"), response.data);
       } catch (error) {
-        console.error(t("Error fetching questions:"), error); 
+        console.error(t("Error fetching questions:"), error);
       } finally {
         setLoading(false);
       }
@@ -252,7 +251,7 @@ const Testpage = () => {
         </div>
       </div>
     </div>
-)  }
+  );
+};
 
 export default Testpage;
-

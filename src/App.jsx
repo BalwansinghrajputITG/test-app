@@ -4,18 +4,17 @@ import Testpage from "./pages/Testpage";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Dashboard from "./pages/Dashboard";
 import SignUp from "./Components/SignUpPage";
- 
 import AboutPage from "./pages/About";
 import NotFound from "./Components/NotFound";
 import AdminDasbord from "./pages/AdminDasbord";
 import { AdminContextProvider } from "./provider/AdminProvider";
 import PrivateRouter from "./Components/PrivateRouter";
-import Alert from "./Components/Alert";
 import AddPeople from "./Components/addentitys";
 import { MyContextProvider } from "./provider/MyAuthProvider";
 import Navbar from "./Components/Navbar";
-import Login from "./Components/Login";
 import LiveUser from "./Components/LiveUser";
+import Alert from "./Components/Alert";
+import Login from "./components/Login";
 
 const App = () => {
   return (
@@ -25,7 +24,7 @@ const App = () => {
         <LiveUser />
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/about" element={<AboutPage />} />
  

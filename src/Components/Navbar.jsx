@@ -14,7 +14,7 @@ const Navbar = () => {
   const handleLogOut = async () => {
     try {
       const res = await axios.post(
-        "https://test-app-backend-ly6a.vercel.app/api/auth/user/logout"
+        "https://test-app-backend-xi.vercel.app/api/auth/user/logout"
       );
       const data = res.data;
       console.log(data);

@@ -111,7 +111,7 @@ export default function AddPeople() {
             navigate("/admin/dasbord");
             // }
         }
-        showAlert("Invalid Login Creditials");
+        showAlert("Invalid Login Credentials","#CE2029");
     };
 
     return (
