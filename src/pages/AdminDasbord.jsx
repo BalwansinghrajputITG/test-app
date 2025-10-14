@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import AdminSidebar from "./AdminSidebar";
-import { useAdminFunctions } from "../provider/AdminProvider";
 import AdminAddQues from "./AdminAddQues";
 import AdminMangeUser from "./AdminMangeUser";
 import AdminSettingPage from "./AdminSettingPage";
 
 const AdminDasbord = () => {
   return (
-    <div className="h-screen w-full bg-[#2a1e55] flex pt-25">
+    <div className="h-screen w-full bg-[#2a1e55] flex">
       {/* Sidebar */}
       <AdminSidebar />
 

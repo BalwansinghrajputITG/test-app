@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAdminFunctions } from "../provider/AdminProvider";
-import { getAllUser } from "../servics/api";
+
 import { memo } from "react";
+import { Link } from "react-router-dom";
 
 function AdminMangeUser() {
   const {
@@ -9,7 +10,6 @@ function AdminMangeUser() {
     user,
     handleAddUser,
     activeTab,
-    newUser,
     userType,
     handleUserType,
     handleUserDelete,
@@ -45,12 +45,14 @@ function AdminMangeUser() {
                 Admin
               </option>
             </select>
-            <button
+            <Link
+              to={"/admin/dasbord/addentitys"}
               onClick={handleAddUser}
               className="ml-2 bg-purple-600 px-4 py-2 rounded hover:bg-purple-800"
             >
-              Add User
-            </button>
+              Add {userType}   
+            </Link>
+
           </div>
 
           {/* Users Table */}
@@ -85,11 +87,13 @@ function AdminMangeUser() {
                     <td className="border border-white px-4 py-2">edit</td>
                     <td
                       onClick={() => handleUserDelete(v._id, user._id)}
+
                       className={` ${
                         v._id == user._id
-                          ? "bg-green-900 hover:bg-green-500"
-                          : "bg-purple-900 hover:bg-red-600"
-                      }   border cursor-pointer text-center  font-bold  border-white px-4 py-2`}
+                          ? "cursor-not-allowed  bg-green-900 hover:bg-green-500 "
+                          : "cursor-pointer bg-purple-900 hover:bg-red-600"
+                      }   border  text-center  font-bold  border-white px-4 py-2`}
+
                     >
                       Delete
                     </td>

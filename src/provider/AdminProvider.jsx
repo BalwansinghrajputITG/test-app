@@ -1,6 +1,12 @@
-// src/provider/AdminProvider.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { deleteUserById, getAllUser } from "../servics/api";
+import {
+  deleteUserById,
+  getAllUser,
+  handleAddQuestion,
+  fetchAllQuestions,
+  deleteQuestionById,
+} from "../servics/api";
+import axios from "axios";
 
 const AdminContext = createContext();
 
@@ -22,7 +28,6 @@ export const AdminContextProvider = ({ children }) => {
   const [newUser, setNewUser] = useState({ name: "", role: "user" });
 
   // set user type
-
   const [userType, setUserType] = useState("user");
 
   // Handle option input change
@@ -31,22 +36,16 @@ export const AdminContextProvider = ({ children }) => {
     updatedOptions[index] = value;
     setOptions(updatedOptions);
   };
-
-  // Handle adding a new question
-  const handleAddQuestion = (e) => {
-    e.preventDefault();
-    const questionData = {
-      question,
-      options,
-      correctOption,
-    };
-    console.log("Question Submitted:", questionData);
-    // TODO: Send to backend API
-    setQuestion("");
-    setOptions(["", "", "", ""]);
-    setCorrectOption(0);
+  const questionData = {
+    question,
+    options,
+    correctOption,
   };
 
+  const example = () => {
+    console.log(questionData);
+    handleAddQuestion(questionData);
+  };
   // Handle changing a user's role
   const handleRoleChange = (id, newRole) => {
     const updated = users.map((user) =>
@@ -74,7 +73,6 @@ export const AdminContextProvider = ({ children }) => {
   }, []);
 
   // Fetch all users from API on mount
-
   const handleUserType = (v) => {
     setUserType(v);
   };
@@ -82,6 +80,7 @@ export const AdminContextProvider = ({ children }) => {
   const fetchUsers = async () => {
     try {
       const data = await getAllUser(userType);
+      console.log(data);
       setUsers(data.Users);
     } catch (error) {
       console.error("Failed to fetch users:", error);
@@ -104,6 +103,37 @@ export const AdminContextProvider = ({ children }) => {
     fetchUsers();
   };
 
+  // State to store all questions
+  const [questions, setQuestions] = useState([]);
+  const fetchAllQuestionForDelete = async () => {
+    setQuestions(await fetchAllQuestions());
+  };
+  // Delete a question by QuestionID (updated endpoint)
+  // const deleteQuestionById = async (QuestionID) => {
+  //   try {
+  //     const res = await fetch(
+  //       "http://localhost:3000/delete-question",
+  //       {
+  //         method: "DELETE",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ QuestionID }),
+  //       }
+  //     );
+  //     const data = await res.json();
+  //     alert(data.message);
+  //     // Refresh question list
+  //     fetchAllQuestions();
+  //   } catch (error) {
+  //     console.error("Failed to delete question:", error);
+  //   }
+  // };
+  const delete_question = async (QuestionID) => {
+    await deleteQuestionById(QuestionID);
+    fetchAllQuestionForDelete();
+  };
+
   return (
     <AdminContext.Provider
       value={{
@@ -117,6 +147,9 @@ export const AdminContextProvider = ({ children }) => {
         handleAddQuestion,
         handleRoleChange,
         handleAddUser,
+        fetchAllQuestions,
+        questions,
+        deleteQuestionById,
         activeTab,
         setActiveTab,
         question,
@@ -130,6 +163,9 @@ export const AdminContextProvider = ({ children }) => {
         userType,
         handleUserType,
         handleUserDelete,
+        example,
+        fetchAllQuestionForDelete,
+        delete_question,
       }}
     >
       {children}
