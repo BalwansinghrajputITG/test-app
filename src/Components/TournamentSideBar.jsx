@@ -3,9 +3,9 @@ import React from "react";
 function TournamentSideBar() {
   return (
     <div>
-      <div className="Tournament-s-de-bar-wrapper">
+      <div className="Tournament-s-de-bar-wrapper ">
         <div
-          className="w-80 h-160 absolute left-0 top-[-1px]"
+          className="w-80 h-160 absolute left-0 top-[-1px] "
           style={{
             clipPath:
               " polygon(100% 0, 100% 45%, 78% 59%, 78% 100%, 0 100%, 0 69%, 0 0)",
@@ -16,7 +16,7 @@ function TournamentSideBar() {
             <h2>TOURNAMENT</h2>
           </div>
           <div>
-            <ul className="tournament-side-bar-list text-white flex gap-5 flex-col text-[20px] pl-20 pt-5 pb-5">
+            <ul className="tournament-side-bar-list text-white flex gap-4 flex-col text-[22px] pl-15 pt-3 pb-3">
               <li>All Tournaments</li>
               <li>New Tournaments</li>
               <li>Weekly Tournaments</li>

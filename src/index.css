@@ -56,21 +56,9 @@
 .card {
     box-shadow: 0px 5px 12px 5px black;
     cursor: pointer;
-    transition: all 0.4s ease-out;
-    animation: slideUp 1400ms;
+    transition: 0.3s;
 }
 
-@keyframes slideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(10px);
-    }
-}
 
 .card:hover {
     transform: translateY(-20px);
@@ -222,8 +210,34 @@
 
 .tournament-side-bar-list li {
     position: relative;
+    cursor: pointer;
+    padding-left: 10px;
+    border-radius: 10px;
+    transition: 0.3s;
+    font-family: sans-serif;
+    border-bottom: 1px solid white;
+    margin-right: 4px;
 }
 
-.tournament-side-bar-list li::before {
-    content: '<svg xmlns=" http: //www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z"/></svg>';
+.tournament-side-bar-list li:hover {
+    background-color: #b669fa;
+}
+
+.tournament-side-bar-list li::before,
+.tournament-side-bar-list li::after {
+    content: url(../public/images/iconmonstr-arrow-24.svg);
+    position: absolute;
+    left: -70px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.tournament-side-bar-list li:hover::before {
+    opacity: 1;
+    left: -60px;
+}
+
+.tournament-side-bar-list li:hover::after {
+    opacity: 1;
+    left: -45px;
 }
