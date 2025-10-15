@@ -50,9 +50,8 @@ function AdminMangeUser() {
               onClick={handleAddUser}
               className="ml-2 bg-purple-600 px-4 py-2 rounded hover:bg-purple-800"
             >
-              Add {userType}   
+              Add {userType}
             </Link>
-
           </div>
 
           {/* Users Table */}
@@ -62,7 +61,7 @@ function AdminMangeUser() {
                 <th className="border border-white px-4 py-2">ID</th>
                 <th className="border border-white px-4 py-2">Name</th>
                 <th className="border border-white px-4 py-2">Role</th>
-                <th className="border border-white px-4 py-2">Edit</th>
+                <th className="border border-white px-4 py-2">View</th>
               </tr>
             </thead>
             <tbody>
@@ -84,16 +83,18 @@ function AdminMangeUser() {
                       {v.fullName}
                     </td>
                     <td className="border border-white px-4 py-2">{v.role}</td>
-                    <td className="border border-white px-4 py-2">edit</td>
+                    <td className="border border-white px-4 py-2">
+                      <Link to={`/admin/dasbord/user-detail/${v._id}`}>
+                        view
+                      </Link>
+                    </td>
                     <td
                       onClick={() => handleUserDelete(v._id, user._id)}
-
                       className={` ${
                         v._id == user._id
                           ? "cursor-not-allowed  bg-green-900 hover:bg-green-500 "
                           : "cursor-pointer bg-purple-900 hover:bg-red-600"
                       }   border  text-center  font-bold  border-white px-4 py-2`}
-
                     >
                       Delete
                     </td>

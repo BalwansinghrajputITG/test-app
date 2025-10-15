@@ -15,6 +15,7 @@ import Navbar from "./Components/Navbar";
 import LiveUser from "./Components/LiveUser";
 import Alert from "./Components/Alert";
 import Login from "./Components/Login";
+import UserDetail from "./pages/UserDetail";
 
 const App = () => {
   return (
@@ -24,26 +25,29 @@ const App = () => {
         <LiveUser />
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/about" element={<AboutPage />} />
- 
+
           {/*  Admin protected route */}
           <Route element={<PrivateRouter />}>
             <Route path="/admin/dasbord" element={<AdminDasbord />} />
             <Route path="/admin/dasbord/addentitys" element={<AddPeople />} />
+            <Route
+              path="/admin/dasbord/user-detail/:userId"
+              element={<UserDetail />}
+            />
           </Route>
- 
+
           {/* Normal protected routes */}
           <Route element={<ProtectedRoutes />}>
             <Route path="/test" element={<Testpage />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
- 
-          <Route path="*" element={<NotFound />} />
 
+          <Route path="*" element={<NotFound />} />
         </Routes>
-        <Alert message={'Welcomes you'} color="#E9D502" onClose={()=>{}}/> 
+        <Alert message={"Welcomes you"} color="#E9D502" onClose={() => {}} />
       </MyContextProvider>
     </AdminContextProvider>
   );
