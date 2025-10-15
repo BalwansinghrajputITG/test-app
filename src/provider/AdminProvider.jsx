@@ -12,7 +12,7 @@ import axios from "axios";
 const AdminContext = createContext();
 
 export const AdminContextProvider = ({ children }) => {
-  const {showAlert} = useAlert();
+  const { showAlert } = useAlert();
   // Current logged-in user
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
@@ -23,7 +23,7 @@ export const AdminContextProvider = ({ children }) => {
   // States for Add Question
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState(["", "", "", ""]);
-  const [correctOption, setCorrectOption] = useState(0);
+  const [correctOption, setCorrectOption] = useState(["", "", "", ""]);
 
   // States for User Management
   const [users, setUsers] = useState([]);
@@ -54,7 +54,7 @@ export const AdminContextProvider = ({ children }) => {
       user.id === id ? { ...user, role: newRole } : user
     );
     setUsers(updated);
-    showAlert("user Role Updated","#E9D502");
+    showAlert("user Role Updated", "#E9D502");
   };
 
   // Handle adding a new user
@@ -68,12 +68,12 @@ export const AdminContextProvider = ({ children }) => {
   // Load current user from localStorage on mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser){
+    if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUser(parsedUser);
       setRole(parsedUser.role);
     }
-  },[]);
+  }, []);
 
   // Fetch all users from API on mount
   const handleUserType = (v) => {
@@ -95,16 +95,16 @@ export const AdminContextProvider = ({ children }) => {
   }, [userType]);
 
   const handleUserDelete = async (otherUserId, adminId) => {
-    const {showAlert } = useAlert();
+    const { showAlert } = useAlert();
     if (otherUserId == adminId) {
-      showAlert("your are not deleted yourshelf","#CE2029")
+      showAlert("your are not deleted yourshelf", "#CE2029");
       return;
     }
 
     const data = await deleteUserById(otherUserId);
-    showAlert("user Deletion Successfull","#CE2029")
+    showAlert("user Deletion Successfull", "#CE2029");
     console.log(data.msg);
-    showAlert(data.msg,"#E9D502");
+    showAlert(data.msg, "#E9D502");
     fetchUsers();
   };
 
