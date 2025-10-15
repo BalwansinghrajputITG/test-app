@@ -1,12 +1,16 @@
 // src/components/AboutPage.jsx
 import React from "react";
 import { motion } from "framer-motion";
+// Assuming 'useTranslation' is imported from 'react-i18next'
+import { useTranslation } from "react-i18next";
+
 import aboutHero from "/images/aboutHero.svg";
 import teamImg from "/images/team.svg";
 import quizPng from "/images/quiz.svg";
 import connectPng from "/images/connect.svg";
 import brain from "/images/brain.svg";
 
+// --- Framer Motion Animation Variants (Left as is) ---
 const fadeIn = (direction = "up", delay = 0) => {
   const variants = {
     hidden: {
@@ -35,11 +39,15 @@ const floatingVariants = {
     },
   },
 };
+// ----------------------------------------------------
 
 const AboutPage = () => {
+  // 1. Initialize useTranslation hook
+  const { t } = useTranslation(); // Using 'about' as the namespace
+
   return (
     <div className="relative bg-gradient-to-b from-[#1c1240] via-[#2a1e55] to-[#3b2a78] text-white min-h-screen overflow-hidden">
-      {/* === Animated Gradient Background Orbs === */}
+      {/* === Animated Gradient Background Orbs === (Left as is) */}
       <motion.div
         className="absolute top-20 left-10 w-72 h-72 bg-purple-600/40 blur-3xl rounded-full"
         variants={floatingVariants}
@@ -69,19 +77,20 @@ const AboutPage = () => {
           className="md:w-1/2 text-center md:text-left"
           variants={fadeIn("right", 0.2)}
         >
+          {/* Translation Key: hero.title */}
           <h1 className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-purple-300 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
-            Welcome to QuizGecho ✨
+            {t("hero.title")}
           </h1>
+          {/* Translation Key: hero.subtitle */}
           <p className="text-lg text-gray-200 mb-6 leading-relaxed">
-            The fun, brain-boosting platform where learning meets excitement!
-            Discover quizzes, challenge friends, and keep your knowledge sharp —
-            one question at a time.
+            {t("hero.subtitle")}
           </p>
+          {/* Translation Key: hero.button */}
           <a
             href="/test"
             className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
           >
-            Start a Quiz 🚀
+            {t("hero.button")} 🚀
           </a>
         </motion.div>
 
@@ -92,9 +101,10 @@ const AboutPage = () => {
           whileDrag={{ color: "red" }}
           dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
         >
+          {/* Translation Key: hero.imageAlt */}
           <img
             src={aboutHero}
-            alt="Quiz Illustration"
+            alt={t("hero.imageAlt")}
             className="w-full max-w-md mx-auto drop-shadow-2xl"
             style={{ pointerEvents: "none", zIndex: 0 }}
           />
@@ -112,24 +122,26 @@ const AboutPage = () => {
         <div className="flex flex-col md:flex-row items-center gap-10">
           <motion.img
             src={brain}
-            alt="Brain Icon"
+            alt={t("whatWeDo.imageAlt")}
             className="w-60 hover:scale-110 transition-all duration-300"
             variants={fadeIn("right")}
           />
           <motion.div variants={fadeIn("left", 0.3)}>
+            {/* Translation Key: whatWeDo.title */}
             <h2 className="text-3xl font-bold mb-4 text-purple-300">
-              🧠 What We Do
+              🧠 {t("whatWeDo.title")}
             </h2>
+            {/* Translation Key: whatWeDo.intro */}
             <p className="text-gray-200 leading-relaxed">
-              We create and curate interactive quizzes covering a wide range of
-              topics:
+              {t("whatWeDo.intro")}
             </p>
             <ul className="mt-3 space-y-2 text-gray-300 text-left">
-              <li>• General Knowledge & Current Affairs</li>
-              <li>• Pop Culture & Entertainment</li>
-              <li>• Science, Tech & Innovation</li>
-              <li>• History, Geography & Sports</li>
-              <li>• Fun & Personality quizzes</li>
+              {/* Translation Keys: whatWeDo.list1, list2, etc. */}
+              <li>• {t("whatWeDo.list1")}</li>
+              <li>• {t("whatWeDo.list2")}</li>
+              <li>• {t("whatWeDo.list3")}</li>
+              <li>• {t("whatWeDo.list4")}</li>
+              <li>• {t("whatWeDo.list5")}</li>
             </ul>
           </motion.div>
         </div>
@@ -143,25 +155,28 @@ const AboutPage = () => {
         variants={fadeIn("up")}
         className="relative py-16 px-6 md:px-20 flex flex-col md:flex-row-reverse items-center gap-10 z-10"
       >
+        {/* Translation Key: whyChooseUs.imageAlt */}
         <motion.img
           src={quizPng}
-          alt="Quiz Icon"
+          alt={t("whyChooseUs.imageAlt")}
           className="w-60 hover:rotate-6 hover:scale-110 transition-all duration-300"
           variants={fadeIn("left")}
         />
         <motion.div variants={fadeIn("right", 0.3)}>
+          {/* Translation Key: whyChooseUs.title */}
           <h2 className="text-3xl font-bold mb-4 text-pink-300">
-            💡 Why Choose QuizGecho?
+            💡 {t("whyChooseUs.title")}
           </h2>
+          {/* Translation Key: whyChooseUs.intro */}
           <p className="text-gray-200 leading-relaxed">
-            We bring fun, knowledge, and community together in one engaging
-            experience.
+            {t("whyChooseUs.intro")}
           </p>
           <ul className="mt-3 space-y-2 text-gray-300 text-left">
-            <li>✅ New quizzes every week</li>
-            <li>✅ Suitable for all ages and interests</li>
-            <li>✅ Compete with friends and track your score</li>
-            <li>✅ Clean, simple, and mobile-friendly interface</li>
+            {/* Translation Keys: whyChooseUs.list1, list2, etc. */}
+            <li>✅ {t("whyChooseUs.list1")}</li>
+            <li>✅ {t("whyChooseUs.list2")}</li>
+            <li>✅ {t("whyChooseUs.list3")}</li>
+            <li>✅ {t("whyChooseUs.list4")}</li>
           </ul>
         </motion.div>
       </motion.section>
@@ -174,21 +189,20 @@ const AboutPage = () => {
         variants={fadeIn("up")}
         className="relative py-16 px-6 md:px-20 bg-[#1f153d]/80 flex flex-col md:flex-row items-center gap-10 rounded-3xl mx-5 my-8 z-10"
       >
+        {/* Translation Key: ourTeam.imageAlt */}
         <motion.img
           src={teamImg}
-          alt="Team Illustration"
+          alt={t("ourTeam.imageAlt")}
           className="w-60 md:w-80 hover:scale-105 transition-all duration-300"
           variants={fadeIn("right")}
         />
         <motion.div variants={fadeIn("left", 0.3)}>
+          {/* Translation Key: ourTeam.title */}
           <h2 className="text-3xl font-bold mb-4 text-blue-300">
-            👩‍💻 Meet Our Team
+            👩‍💻 {t("ourTeam.title")}
           </h2>
-          <p className="text-gray-300 max-w-xl">
-            Behind QuizGecho is a passionate group of developers, designers, and
-            trivia enthusiasts dedicated to making learning fun and accessible
-            for everyone.
-          </p>
+          {/* Translation Key: ourTeam.description */}
+          <p className="text-gray-300 max-w-xl">{t("ourTeam.description")}</p>
         </motion.div>
       </motion.section>
 
@@ -200,9 +214,10 @@ const AboutPage = () => {
         variants={fadeIn("up")}
         className="relative py-16 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-10 z-10"
       >
+        {/* Translation Key: connect.imageAlt */}
         <motion.img
           src={connectPng}
-          alt="Connect Illustration"
+          alt={t("connect.imageAlt")}
           className="w-48 md:w-70 hover:scale-110 transition-transform duration-300"
           variants={fadeIn("left")}
         />
@@ -210,17 +225,18 @@ const AboutPage = () => {
           className="text-center md:text-left"
           variants={fadeIn("right", 0.3)}
         >
+          {/* Translation Key: connect.title */}
           <h2 className="text-3xl font-bold mb-3 text-green-300">
-            💬 Let’s Connect!
+            💬 {t("connect.title")}
           </h2>
-          <p className="text-gray-300">
-            Have ideas, suggestions, or want to collaborate? We’d love to hear
-            from you!
-          </p>
+          {/* Translation Key: connect.description1 */}
+          <p className="text-gray-300">{t("connect.description1")}</p>
           <p className="mt-3">
-            📧 <strong>contact@quizgecho.com</strong>
+            {/* Translation Key: connect.emailLabel (using string concatenation for clarity) */}
+            📧 <strong>{t("connect.emailLabel")}</strong>
           </p>
-          <p>🌐 Follow us: @QuizGechoOfficial</p>
+          {/* Translation Key: connect.socialLabel */}
+          <p>🌐 {t("connect.socialLabel")}</p>
         </motion.div>
       </motion.section>
 
@@ -232,9 +248,11 @@ const AboutPage = () => {
         variants={fadeIn("up")}
         className="relative py-10 border-t border-purple-500/20 text-center text-gray-400 z-10"
       >
-        <p>Thank you for being part of our quiz-loving community 💜</p>
+        {/* Translation Key: footer.thanks */}
+        <p>{t("footer.thanks")}</p>
+        {/* Translation Key: footer.copyright */}
         <p className="mt-2 text-sm">
-          © {new Date().getFullYear()} QuizGecho. All rights reserved.
+          © {new Date().getFullYear()} {t("footer.copyright")}
         </p>
       </motion.footer>
     </div>

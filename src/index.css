@@ -44,6 +44,11 @@
     transition: all 0.3s;
 }
 
+html *,
+body * {
+    scroll-behavior: smooth;
+}
+
 .login:hover {
     background: transparent;
     color: white;
@@ -240,4 +245,52 @@
 .tournament-side-bar-list li:hover::after {
     opacity: 1;
     left: -45px;
+}
+
+.liveUser-bar {
+    box-shadow: 0px 3px 4px 2px rgb(0, 0, 0);
+}
+
+.question-flow::-webkit-scrollbar {
+    display: none;
+}
+
+.weekly-tournaments-page-card-title {
+    transition: 0.3s;
+    height: 50px;
+    clip-path: polygon(0% 13.75%, 29.41% 13.75%, 51.13% 1.03%, 74.09% 13.75%, 100% 13.75%, 100% 100%, 0% 100%);
+
+}
+
+.weekly-tournaments-page-card-rules ul {
+    list-style: circle;
+    padding-left: 10px;
+}
+
+.weekly-tournaments-page-card-title:hover {
+    height: 220px;
+    clip-path: polygon(0% 0%, 25.98% 0%, 49.91% 8.12%, 73.84% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, and Opera */
+}
+
+.other-tournament-side-bar-list li {
+    position: relative;
+}
+
+.other-tournament-side-bar-list li::before {
+    content: "";
+    position: absolute;
+    background-color: white;
+    width: 0px;
+    height: 2px;
+    transition: 0.3s;
+    bottom: -3px;
+}
+
+.other-tournament-side-bar-list li:hover::before {
+    width: 100px;
 }

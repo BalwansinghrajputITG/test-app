@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { singup } from "../servics/api";
+import { useAlert } from "../servics/ApiChanger";
 import { useMyFunctions } from "../provider/MyAuthProvider";
 
 export default function SignUp() {
+  const { showAlert } = useAlert();
   const [data, setData] = useState({
     fullName: "",
     email: "",
@@ -28,8 +30,9 @@ export default function SignUp() {
 
     if (token) {
       navigate("/");
+      showAlert("HomePage", "#006400");
     }
-  });
+  }, []);
 
   //  Validations
 
@@ -102,7 +105,9 @@ export default function SignUp() {
     // Proceed only if no errors
     const isValid = Object.values(newErrors).every((v) => v === "");
     if (isValid) {
+      showAlert("user SignUP SuccessFull", "#006400");
       const userData = await singup(data);
+      console.log(userData.userData);
       localStorage.setItem("token", userData.userData.token);
       localStorage.setItem("user", JSON.stringify(userData.userData));
       const token = localStorage.getItem("token");
@@ -110,8 +115,10 @@ export default function SignUp() {
       if (token !== "") {
         setIsAuth(token);
         if (role == "admin") {
+          showAlert("SignUp Successfull as Admin", "#006400");
           return navigate("/admin/dasbord");
         }
+        showAlert("SignUP Successfull", "#006400");
         navigate("/");
       }
     }
@@ -124,7 +131,6 @@ export default function SignUp() {
         className="form flex flex-col gap-6 text-white shadow-lg rounded-2xl max-w-md w-full px-10 py-8 bg-black/40 backdrop-blur-md"
       >
         <h1 className="text-4xl font-bold mb-4">Sign-up</h1>
-
         {/* Full Name */}
         <div className="flex flex-col">
           <label htmlFor="fullName" className="font-bold">

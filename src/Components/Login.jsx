@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { login } from "../servics/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminFunctions } from "../provider/AdminProvider";
+import { useAlert } from "../servics/ApiChanger";
 import { useMyFunctions } from "../provider/MyAuthProvider";
 
 
 
 function Login() {
+const {showAlert}= useAlert();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
@@ -19,16 +21,17 @@ function Login() {
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/");
+      showAlert("HomePage","#006400");
     }
   }, [navigate]);
 
-  function validEmail(email) {
+  function validEmail(email){
     const re =
       /^[a-zA-Z][\w.-]+@[a-zA-Z\d-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
     return re.test(email.trim());
   }
 
-  function validPassword(password) {
+  function validPassword(password){
     const value = password.trim();
     if (value.length < 6) return false;
     const hasLower = /[a-z]/.test(value);
@@ -51,32 +54,38 @@ function Login() {
     if (newErrors.email || newErrors.password) return;
 
     try {
-      const data = await login(email, password); // 👈 This calls your backend
+      const data = await login(email, password);   // 👈 This calls your backend
+      showAlert('Admin Login Successfull',"#006400");
 
       if (data && data.userData) {
+        showAlert("Login Succssfull","#006400");
         const { token, role } = data.userData;
-
         //  Save to localStorage
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(data.userData));
-
         //  Update context
         setIsAuth(token);
         setUser(data.userData);
         setRole(role);
+        showAlert("Admin Login Successfull ","#006400");
 
         //  Redirect based on role
         if (role === "admin") {
           navigate("/admin/dasbord");
+         showAlert("Admin Login Succssfull","#006400");
         } else {
           navigate("/dashboard");
+          showAlert("user login Successfull","#006400");
+          // <Alert message={' User Login Successfull'} color="#006400" onClose={() => {}} />
         }
       } else {
-        alert("Invalid login response");
+        showAlert("Invalid Login Response","#CE2029");
+        // <Alert message={'Invalid Login Response'} color="#CE2029" onClose={() => {}} />
       }
     } catch (err) {
       console.error(err);
-      alert("Login failed. Please check credentials.");
+      showAlert("Login failed. Please check credentials.","#CE2029");
+      // <Alert message={"Login failed. Please check credentials."} color="#CE2029" onClose={() => {}} />;
     }
   }
 
@@ -92,11 +101,10 @@ function Login() {
         {/* Email */}
         <div className="flex flex-col">
           <input
-            className={`border-b-2 px-3 py-2 rounded-md outline-none w-full transition-colors ${
-              errors.email
+            className={`border-b-2 px-3 py-2 rounded-md outline-none w-full transition-colors ${errors.email
                 ? "border-red-500 bg-red-100 text-red-900"
                 : "border-white focus:bg-white focus:text-black"
-            }`}
+              }`}
             type="email"
             placeholder="Email Address"
             value={email}
@@ -113,11 +121,10 @@ function Login() {
         {/* Password */}
         <div className="flex flex-col">
           <input
-            className={`border-b-2 px-3 py-2 rounded-md outline-none w-full transition-colors ${
-              errors.password
+            className={`border-b-2 px-3 py-2 rounded-md outline-none w-full transition-colors ${errors.password
                 ? "border-red-500 bg-red-100 text-red-900"
                 : "border-white focus:bg-white focus:text-black"
-            }`}
+              }`}
             type="password"
             placeholder="Password"
             value={password}

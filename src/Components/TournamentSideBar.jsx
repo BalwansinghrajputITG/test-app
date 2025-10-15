@@ -17,15 +17,26 @@ function TournamentSideBar() {
           </div>
           <div>
             <ul className="tournament-side-bar-list text-white flex gap-4 flex-col text-[22px] pl-15 pt-3 pb-3">
-              <li>All Tournaments</li>
-              <li>New Tournaments</li>
+              <li>
+                <a href="#weekly-tournament">All Tournaments</a>
+              </li>
+              <li>
+                <a href="#new-tournament">New Tournaments</a>
+              </li>
               <li>Weekly Tournaments</li>
               <li>Practise Tournaments</li>
               <li>Participated In</li>
             </ul>
           </div>
+          <div className="p-15 text-white other-tournament-side-bar-list">
+            <ul className="flex gap-2 flex-col ">
+              <li>Leader Board</li>
+              <li>Your Rank</li>
+              <li>History</li>
+            </ul>
+          </div>
         </div>
-        <div className="w-62.5 h-[80vh] bg-[#1c1241]"></div>
+        <div className="w-62.5 h-[calc(100vh_-_100px)] bg-[#1c1241]"></div>
       </div>
     </div>
   );
