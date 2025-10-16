@@ -57,5 +57,4 @@ const SelectCard = () => {
     </div>
   );
 };
-
 export default SelectCard;

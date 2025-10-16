@@ -113,3 +113,18 @@ export const deleteQuestionById = async (QuestionID) => {
     console.error("Failed to delete question:", error);
   }
 };
+
+export const getUserDetailsById = async (_id) => {
+  try {
+
+    console.log("userId", _id)
+
+    const res = await axios.post(
+      `${BASE_URL}/api/auth/user/userById`,
+      { userId : _id });
+    const data = res.data;
+    return data
+  } catch(error){
+    console.error("Failed to delete question:", error);
+}
+};
